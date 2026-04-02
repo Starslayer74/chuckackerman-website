@@ -43,9 +43,6 @@
   .btn-outline { background: transparent; color: var(--text-on-dark); font-size: 14px; font-weight: 500; padding: 11px 26px; border-radius: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); transition: border-color 0.2s, color 0.2s; }
   .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
 
-  /* SKILLS STRIP */
-  .skills-strip { background: var(--navy-mid); padding: 1rem 2rem; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; border-top: 1px solid rgba(255,255,255,0.07); border-bottom: 1px solid rgba(255,255,255,0.07); }
-  .skill-pill { background: rgba(74,141,181,0.18); color: #9ec8e3; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 1px solid rgba(74,141,181,0.35); }
 
   /* SECTIONS */
   .section { padding: 4rem 2rem; }
@@ -149,18 +146,6 @@
   </div>
 </section>
 
-<div class="skills-strip">
-  <span class="skill-pill">Salesforce</span>
-  <span class="skill-pill">ServiceNow</span>
-  <span class="skill-pill">Five9</span>
-  <span class="skill-pill">Fleet Operations</span>
-  <span class="skill-pill">Technical Support</span>
-  <span class="skill-pill">Web Application Support</span>
-  <span class="skill-pill">Remote Team Leadership</span>
-  <span class="skill-pill">Stakeholder Training</span>
-  <span class="skill-pill">User Provisioning &amp; Access Management</span>
-  <span class="skill-pill">Telematics Platform Support</span>
-</div>
 
 <!-- ABOUT -->
 <section class="section about-bg" id="about">
@@ -352,8 +337,9 @@
   </div>
 </section>
 
-<footer class="footer">
-  &copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Fleet Technology Professional &amp; Author &nbsp;&middot;&nbsp; Baltimore, MD
+<footer class="footer" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Fleet Technology Professional &amp; Author &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="https://chickenonaraft.com" target="_blank" style="font-size:11px; color:#5a7a99; text-decoration:none; border-bottom: 1px dashed #3a5a79; padding-bottom:1px; white-space:nowrap; transition: color 0.2s;" onmouseover="this.style.color='#e8a832'" onmouseout="this.style.color='#5a7a99'">&#x1F914; Click here for your moment of zen</a>
 </footer>
 
 </body>
