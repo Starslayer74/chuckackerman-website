@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Chuck Ackerman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2a4a;
+    --navy-mid: #1a3d5c;
+    --steel: #2e5f85;
+    --accent: #e8a832;
+    --accent-light: #f5c96a;
+    --teal: #0e7c6b;
+    --teal-light: #12a088;
+    --text-on-dark: #e8edf2;
+    --text-muted-dark: #94aec4;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #f8f8f6; min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* NAV */
+  .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-back { font-size: 13px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent-light); }
+
+  /* HERO STRIP */
+  .page-hero { background: var(--navy); padding: 3rem 2rem 3rem; text-align: center; }
+  .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+  /* MAIN */
+  .main { flex: 1; padding: 3rem 2rem; }
+  .main-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+
+  /* REASONS */
+  .reasons-col h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: #0f2a4a; margin-bottom: 1.25rem; }
+  .reason-item { display: flex; gap: 12px; margin-bottom: 1.25rem; align-items: flex-start; }
+  .reason-icon { width: 36px; height: 36px; border-radius: 8px; background: #e6f4f1; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .reason-text h3 { font-size: 14px; font-weight: 500; color: #0f2a4a; margin-bottom: 2px; }
+  .reason-text p { font-size: 13px; color: #556; line-height: 1.6; }
+  .response-note { margin-top: 2rem; padding: 1rem; background: #f5f7fa; border-radius: 8px; border-left: 3px solid var(--teal); font-size: 13px; color: #445; line-height: 1.7; }
+
+  /* FORM */
+  .form-col { background: #fff; border: 0.5px solid #dde3ec; border-radius: 12px; padding: 2rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 13px; font-weight: 500; color: #1a2a3a; margin-bottom: 6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: #1a1a2e;
+    background: #f8f9fb;
+    border: 1px solid #d0d7e4;
+    border-radius: 7px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--teal); background: #fff; }
+  .form-group textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+  .form-note { font-size: 12px; color: #889; margin-top: 4px; }
+  .btn-submit {
+    width: 100%;
+    background: var(--teal);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: #0a6358; }
+
+  /* SUCCESS STATE */
+  .success-msg { display: none; text-align: center; padding: 2rem 1rem; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #0f2a4a; margin-bottom: 0.75rem; }
+  .success-msg p { font-size: 14px; color: #556; line-height: 1.7; }
+  .success-icon { font-size: 40px; margin-bottom: 1rem; }
+
+  /* FOOTER */
+  .footer { background: #0a1e35; padding: 1.25rem 2rem; text-align: center; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer a { color: #5a7a99; text-decoration: none; }
+  .footer a:hover { color: var(--accent-light); }
+
+  @media (max-width: 680px) {
+    .main-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .page-hero h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Chuck Ackerman</a>
+  <a href="index.html" class="nav-back">← Back to main site</a>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Get in touch</p>
+  <h1>Send Chuck a Message</h1>
+  <p>Whether you're a reader, a recruiter, or just someone who has something to say — the form below goes straight to Chuck. He reads everything. <strong style="color: var(--accent-light);">EVERYTHING.</strong></p>
+</div>
+
+<div class="main">
+  <div class="main-inner">
+
+    <div class="reasons-col">
+      <h2>Reasons to reach out</h2>
+
+      <div class="reason-item">
+        <div class="reason-icon">💼</div>
+        <div class="reason-text">
+          <h3>Professional &amp; business inquiries</h3>
+          <p>Chuck is a fleet technology and SaaS platform support professional with 20+ years of experience in tech support and help desk operations. If you have a professional opportunity or business discussion you think might be mutually interesting, he's always open to a conversation.</p>
+        </div>
+      </div>
+
+      <div class="reason-item">
+        <div class="reason-icon">📚</div>
+        <div class="reason-text">
+          <h3>Book questions</h3>
+          <p>Have a question about one of Chuck's books? Did something in a chapter resonate — or did you catch something he got wrong? He wants to know either way.</p>
+        </div>
+      </div>
+
+      <div class="reason-item">
+        <div class="reason-icon">✉️</div>
+        <div class="reason-text">
+          <h3>Feedback & fan mail</h3>
+          <p>Loved the book? Hated a chapter? Just want to say hi? Chuck reads everything and does his best to respond.</p>
+        </div>
+      </div>
+
+      <div class="response-note">
+        <strong>A note on response times:</strong> Chuck handles his own inbox, so responses may take a few days. He appreciates your patience.
+      </div>
+    </div>
+
+    <div class="form-col">
+      <form id="contact-form" action="https://formspree.io/f/xdaplnee" method="POST">
+
+        <input type="hidden" name="_subject" value="[ChuckAckerman.org] New message from website">
+        <input type="hidden" name="_replyto" value="">
+
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="First and last name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Your email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          <p class="form-note">Chuck will reply to this address.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="reason">Reason for contact</label>
+          <select id="reason" name="reason" required>
+            <option value="" disabled selected>Select a reason...</option>
+            <option value="Professional Inquiry">Professional &amp; business inquiry</option>
+            <option value="Book Question">Question about a book</option>
+            <option value="Feedback">Feedback</option>
+            <option value="Fan Mail">Fan mail</option>
+            <option value="Other">Something else</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Say whatever's on your mind..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send message</button>
+      </form>
+
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✅</div>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out. Chuck reads every message and will get back to you within a few days.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="index.html">← Back to main site</a>
+</footer>
+
+<script>
+  const form = document.getElementById('contact-form');
+  const success = document.getElementById('success-msg');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Something went wrong — please try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Something went wrong — please try again';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
