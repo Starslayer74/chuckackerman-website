@@ -24,8 +24,10 @@
   /* NAV */
   .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; }
   .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
-  .nav-back { font-size: 13px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-  .nav-back:hover { color: var(--accent-light); }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding-bottom: 2px; }
+  .nav-links a:hover { color: var(--accent-light); }
+  .nav-links a.active { color: var(--accent-light); border-bottom: 2px solid var(--accent); }
 
   /* HERO STRIP */
   .page-hero { background: var(--navy); padding: 3rem 2rem 3rem; text-align: center; }
@@ -103,9 +105,22 @@
 </head>
 <body>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DX84FX7ZXV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DX84FX7ZXV');
+</script>
 <nav class="nav">
   <a href="index.html" class="nav-brand">Chuck Ackerman</a>
-  <a href="index.html" class="nav-back">← Back to main site</a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#resume">Resume</a>
+    <a href="books.html">Books</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
 </nav>
 
 <div class="page-hero">
@@ -198,7 +213,6 @@
 
 <footer class="footer">
   <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Baltimore, MD</span>
-  <a href="index.html">← Back to main site</a>
 </footer>
 
 <script>
