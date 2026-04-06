@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Chuck Ackerman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Blog posts by Chuck Ackerman — thoughts on tech, business history, consumer culture, and more.">
+<meta property="og:title" content="Blog — Chuck Ackerman">
+<meta property="og:description" content="Thoughts on tech, business history, consumer culture, and more.">
+<meta property="og:url" content="https://chuckackerman.net/blog.html">
+<meta property="og:image" content="https://chuckackerman.net/preview.jpg">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DX84FX7ZXV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DX84FX7ZXV');
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2a4a; --navy-mid: #1a3d5c; --steel: #2e5f85;
+    --accent: #e8a832; --accent-light: #f5c96a;
+    --teal: #0e7c6b; --teal-light: #12a088;
+    --text-on-dark: #e8edf2; --text-muted-dark: #94aec4;
+    --radius-md: 8px; --radius-lg: 12px;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #f8f8f6; min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* NAV */
+  .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding-bottom: 2px; }
+  .nav-links a:hover { color: var(--accent-light); }
+  .nav-links a.active { color: var(--accent-light); border-bottom: 2px solid var(--accent); }
+
+  /* PAGE HERO */
+  .page-hero { background: var(--navy); padding: 3.5rem 2rem; text-align: center; }
+  .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 520px; margin: 0 auto 1.25rem; line-height: 1.75; }
+  .substack-follow { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--accent-light); font-size: 13px; font-weight: 500; padding: 8px 20px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+  .substack-follow:hover { background: rgba(255,255,255,0.18); }
+
+  /* MAIN */
+  .main { flex: 1; padding: 4rem 2rem; }
+  .main-inner { max-width: 780px; margin: 0 auto; }
+
+  /* LOADING STATE */
+  .loading { text-align: center; padding: 4rem 2rem; }
+  .loading-spinner { width: 36px; height: 36px; border: 3px solid #e0e4ec; border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading p { font-size: 14px; color: #778; }
+
+  /* ERROR STATE */
+  .error-state { text-align: center; padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 0.5px solid #dde3ec; }
+  .error-state h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #0f2a4a; margin-bottom: 0.5rem; }
+  .error-state p { font-size: 14px; color: #667; line-height: 1.7; margin-bottom: 1rem; }
+  .error-state a { color: var(--teal); font-weight: 500; }
+
+  /* POST CARDS */
+  .posts-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .post-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.75rem; transition: box-shadow 0.2s; text-decoration: none; display: block; color: inherit; }
+  .post-card:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.1); border-color: #c0cce0; }
+  .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+  .post-date { font-size: 12px; color: #0e7c6b; font-weight: 500; letter-spacing: 0.04em; }
+  .post-source { font-size: 11px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; }
+  .post-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #0f2a4a; line-height: 1.3; margin-bottom: 0.75rem; }
+  .post-excerpt { font-size: 14px; color: #556; line-height: 1.75; margin-bottom: 1rem; }
+  .post-readmore { font-size: 13px; color: var(--teal); font-weight: 500; }
+
+  /* SUBSCRIBE STRIP */
+  .subscribe-strip { background: var(--navy-mid); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 2.5rem; }
+  .subscribe-strip p { color: var(--text-muted-dark); font-size: 14px; margin-bottom: 0.75rem; line-height: 1.6; }
+  .subscribe-strip strong { color: var(--accent-light); }
+  .btn-subscribe { display: inline-block; background: var(--accent); color: #1a1200; font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-subscribe:hover { opacity: 0.88; }
+
+  /* FOOTER */
+  .footer { background: #0a1e35; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 2rem; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
+  .footer a { color: #5a7a99; text-decoration: none; }
+  .footer a:hover { color: var(--accent-light); }
+
+  @media (max-width: 680px) {
+    .page-hero h1 { font-size: 28px; }
+    .nav-links { display: none; }
+    .post-title { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Chuck Ackerman</a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#resume">Resume</a>
+    <a href="books.html">Books</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Writing & thoughts</p>
+  <h1>The Blog</h1>
+  <p>Business history, consumer culture, tech observations, and whatever else is rattling around in Chuck's head this week. Posts syndicated from Substack.</p>
+  <a href="https://chuckackerman.substack.com" target="_blank" class="substack-follow" onclick="gtag('event', 'click', {event_category: 'external_link', event_label: 'substack_follow'});">Follow on Substack →</a>
+</div>
+
+<div class="main">
+  <div class="main-inner">
+
+    <div id="posts-container">
+      <div class="loading" id="loading-state">
+        <div class="loading-spinner"></div>
+        <p>Loading latest posts...</p>
+      </div>
+    </div>
+
+    <div class="subscribe-strip">
+      <p><strong>Never miss a post.</strong> Subscribe on Substack to get new articles delivered straight to your inbox.</p>
+      <a href="https://chuckackerman.substack.com" target="_blank" class="btn-subscribe" onclick="gtag('event', 'click', {event_category: 'external_link', event_label: 'substack_subscribe'});">Subscribe for free</a>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer">
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Author &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="index.html">Back to main site</a>
+</footer>
+
+<script>
+const SUBSTACK_URL = 'https://chuckackerman.substack.com';
+const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(SUBSTACK_URL + '/feed')}&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=20`;
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function stripHtml(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || '';
+}
+
+function truncate(str, maxLen) {
+  if (str.length <= maxLen) return str;
+  return str.substring(0, str.lastIndexOf(' ', maxLen)) + '...';
+}
+
+async function loadPosts() {
+  const container = document.getElementById('posts-container');
+
+  try {
+    const res = await fetch(RSS_URL);
+    const data = await res.json();
+
+    if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+      throw new Error('No posts found');
+    }
+
+    const postsHtml = data.items.map(item => {
+      const excerpt = truncate(stripHtml(item.description || item.content || ''), 220);
+      const date = formatDate(item.pubDate);
+      return `
+        <a class="post-card" href="${item.link}" target="_blank"
+           onclick="gtag('event', 'click', {event_category: 'blog_post', event_label: '${item.title.replace(/'/g, '')}'});">
+          <div class="post-meta">
+            <span class="post-date">${date}</span>
+            <span class="post-source">Substack</span>
+          </div>
+          <h2 class="post-title">${item.title}</h2>
+          <p class="post-excerpt">${excerpt}</p>
+          <span class="post-readmore">Read full post on Substack →</span>
+        </a>`;
+    }).join('');
+
+    container.innerHTML = `<div class="posts-grid">${postsHtml}</div>`;
+
+  } catch (err) {
+    container.innerHTML = `
+      <div class="error-state">
+        <h3>Posts coming soon</h3>
+        <p>Chuck's blog is powered by Substack. Head over there to read the latest, or subscribe to get new posts in your inbox.</p>
+        <a href="${SUBSTACK_URL}" target="_blank">Visit Substack →</a>
+      </div>`;
+  }
+}
+
+loadPosts();
+</script>
+
+</body>
+</html>
