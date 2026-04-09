@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Chuck Ackerman</title>
+<title>The Chuck Stops Here — Blog by Chuck Ackerman</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<meta name="description" content="Blog posts by Chuck Ackerman — thoughts on tech, business history, consumer culture, and more.">
-<meta property="og:title" content="Blog — Chuck Ackerman">
+<meta name="description" content="The Chuck Stops Here — thoughts on tech, business history, consumer culture, and whatever else is rattling around in Chuck Ackerman's head.">
+<meta property="og:title" content="The Chuck Stops Here — Blog by Chuck Ackerman">
 <meta property="og:description" content="Thoughts on tech, business history, consumer culture, and more.">
 <meta property="og:url" content="https://chuckackerman.net/blog.html">
 <meta property="og:image" content="https://chuckackerman.net/preview.jpg">
@@ -41,44 +41,59 @@
   /* PAGE HERO */
   .page-hero { background: var(--navy); padding: 3.5rem 2rem; text-align: center; }
   .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
-  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; }
-  .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 520px; margin: 0 auto 1.25rem; line-height: 1.75; }
-  .substack-follow { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: var(--accent-light); font-size: 13px; font-weight: 500; padding: 8px 20px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
-  .substack-follow:hover { background: rgba(255,255,255,0.18); }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.5rem; }
+  .page-hero-sub { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--accent); font-style: italic; margin-bottom: 0.75rem; }
+  .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 520px; margin: 0 auto; line-height: 1.75; }
 
-  /* MAIN */
+  /* MAIN LAYOUT */
   .main { flex: 1; padding: 4rem 2rem; }
   .main-inner { max-width: 780px; margin: 0 auto; }
 
-  /* LOADING STATE */
+  /* LOADING / ERROR */
   .loading { text-align: center; padding: 4rem 2rem; }
   .loading-spinner { width: 36px; height: 36px; border: 3px solid #e0e4ec; border-top-color: var(--teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading p { font-size: 14px; color: #778; }
+  .error-box { text-align: center; padding: 3rem; background: #fff; border-radius: var(--radius-lg); border: 0.5px solid #dde3ec; }
+  .error-box h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #0f2a4a; margin-bottom: 0.5rem; }
+  .error-box p { font-size: 14px; color: #667; line-height: 1.7; }
 
-  /* ERROR STATE */
-  .error-state { text-align: center; padding: 3rem 2rem; background: #fff; border-radius: var(--radius-lg); border: 0.5px solid #dde3ec; }
-  .error-state h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #0f2a4a; margin-bottom: 0.5rem; }
-  .error-state p { font-size: 14px; color: #667; line-height: 1.7; margin-bottom: 1rem; }
-  .error-state a { color: var(--teal); font-weight: 500; }
-
-  /* POST CARDS */
-  .posts-grid { display: flex; flex-direction: column; gap: 1.5rem; }
-  .post-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.75rem; transition: box-shadow 0.2s; text-decoration: none; display: block; color: inherit; }
-  .post-card:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.1); border-color: #c0cce0; }
+  /* POST LIST (index view) */
+  .posts-list { display: flex; flex-direction: column; gap: 0; }
+  .post-summary { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.75rem; margin-bottom: 1.25rem; cursor: pointer; transition: box-shadow 0.2s; }
+  .post-summary:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.1); border-color: #c0cce0; }
   .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
   .post-date { font-size: 12px; color: #0e7c6b; font-weight: 500; letter-spacing: 0.04em; }
-  .post-source { font-size: 11px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; }
-  .post-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #0f2a4a; line-height: 1.3; margin-bottom: 0.75rem; }
+  .post-summary h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #0f2a4a; line-height: 1.3; margin-bottom: 0.6rem; }
   .post-excerpt { font-size: 14px; color: #556; line-height: 1.75; margin-bottom: 1rem; }
-  .post-readmore { font-size: 13px; color: var(--teal); font-weight: 500; }
+  .post-thumb { width: 100%; max-height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
+  .read-more-btn { font-size: 13px; color: var(--teal); font-weight: 500; background: none; border: none; cursor: pointer; padding: 0; }
 
-  /* SUBSCRIBE STRIP */
-  .subscribe-strip { background: var(--navy-mid); border-radius: var(--radius-lg); padding: 1.5rem; text-align: center; margin-top: 2.5rem; }
-  .subscribe-strip p { color: var(--text-muted-dark); font-size: 14px; margin-bottom: 0.75rem; line-height: 1.6; }
-  .subscribe-strip strong { color: var(--accent-light); }
-  .btn-subscribe { display: inline-block; background: var(--accent); color: #1a1200; font-size: 13px; font-weight: 500; padding: 10px 24px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
-  .btn-subscribe:hover { opacity: 0.88; }
+  /* FULL POST VIEW */
+  .full-post { display: none; }
+  .back-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #667; background: none; border: none; cursor: pointer; margin-bottom: 1.5rem; padding: 0; transition: color 0.2s; }
+  .back-btn:hover { color: var(--teal); }
+  .full-post-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e8eaf0; }
+  .full-post-header h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #0f2a4a; line-height: 1.25; margin-bottom: 0.75rem; }
+  .full-post-date { font-size: 13px; color: #0e7c6b; font-weight: 500; }
+  .full-post-body { font-size: 16px; line-height: 1.85; color: #333; }
+  .full-post-body p { margin-bottom: 1.25rem; }
+  .full-post-body h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: #0f2a4a; margin: 2rem 0 1rem; }
+  .full-post-body h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: #0f2a4a; margin: 1.5rem 0 0.75rem; }
+  .full-post-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; display: block; }
+  .full-post-body a { color: var(--teal); text-decoration: underline; }
+  .full-post-body a:hover { color: #0a6358; }
+  .full-post-body ul, .full-post-body ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .full-post-body li { margin-bottom: 0.5rem; line-height: 1.75; }
+  .full-post-body blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: #f8f6f0; border-radius: 0 8px 8px 0; font-style: italic; color: #445; }
+  .full-post-body hr { border: none; border-top: 1px solid #e0e4ec; margin: 2rem 0; }
+
+  /* PAGINATION */
+  .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 2rem; }
+  .page-btn { background: #fff; border: 0.5px solid #dde3ec; border-radius: 6px; padding: 8px 16px; font-size: 13px; color: #445; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .page-btn:hover { border-color: var(--teal); color: var(--teal); }
+  .page-btn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .page-btn:disabled { opacity: 0.4; cursor: default; }
 
   /* FOOTER */
   .footer { background: #0a1e35; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 2rem; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
@@ -86,9 +101,9 @@
   .footer a:hover { color: var(--accent-light); }
 
   @media (max-width: 680px) {
-    .page-hero h1 { font-size: 28px; }
+    .page-hero h1 { font-size: 30px; }
     .nav-links { display: none; }
-    .post-title { font-size: 18px; }
+    .full-post-header h1 { font-size: 24px; }
   }
 </style>
 </head>
@@ -106,38 +121,49 @@
 </nav>
 
 <div class="page-hero">
-  <p class="page-hero-label">Writing & thoughts</p>
-  <h1>The Blog</h1>
-  <p>Business history, consumer culture, tech observations, and whatever else is rattling around in Chuck's head this week. Posts syndicated from Substack.</p>
-  <a href="https://chuckackerman.substack.com" target="_blank" class="substack-follow" onclick="gtag('event', 'click', {event_category: 'external_link', event_label: 'substack_follow'});">Follow on Substack →</a>
+  <p class="page-hero-label">Chuck Ackerman</p>
+  <h1>The Chuck Stops Here</h1>
+  <p class="page-hero-sub">Opinions, observations, and occasional nonsense</p>
+  <p>Thoughts on tech, business history, consumer culture, and whatever else is rattling around up there this week.</p>
 </div>
 
 <div class="main">
   <div class="main-inner">
 
-    <div id="posts-container">
+    <!-- POST LIST VIEW -->
+    <div id="posts-view">
       <div class="loading" id="loading-state">
         <div class="loading-spinner"></div>
-        <p>Loading latest posts...</p>
+        <p>Loading posts...</p>
       </div>
+      <div class="posts-list" id="posts-list" style="display:none;"></div>
+      <div class="pagination" id="pagination" style="display:none;"></div>
     </div>
 
-    <div class="subscribe-strip">
-      <p><strong>Never miss a post.</strong> Subscribe on Substack to get new articles delivered straight to your inbox.</p>
-      <a href="https://chuckackerman.substack.com" target="_blank" class="btn-subscribe" onclick="gtag('event', 'click', {event_category: 'external_link', event_label: 'substack_subscribe'});">Subscribe for free</a>
+    <!-- FULL POST VIEW -->
+    <div class="full-post" id="full-post-view">
+      <button class="back-btn" id="back-btn">← Back to all posts</button>
+      <div class="full-post-header">
+        <h1 id="full-post-title"></h1>
+        <p class="full-post-date" id="full-post-date"></p>
+      </div>
+      <div class="full-post-body" id="full-post-body"></div>
     </div>
 
   </div>
 </div>
 
 <footer class="footer">
-  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Author &nbsp;&middot;&nbsp; Baltimore, MD</span>
-  <a href="index.html">Back to main site</a>
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="index.html">← Back to main site</a>
 </footer>
 
 <script>
-const SUBSTACK_URL = 'https://chuckackerman.substack.com';
-const RSS_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(SUBSTACK_URL + '/feed')}&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=20`;
+const BLOGGER_FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=50';
+
+const POSTS_PER_PAGE = 5;
+let allPosts = [];
+let currentPage = 1;
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -155,47 +181,93 @@ function truncate(str, maxLen) {
   return str.substring(0, str.lastIndexOf(' ', maxLen)) + '...';
 }
 
+function getFirstImage(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const img = tmp.querySelector('img');
+  return img ? img.src : null;
+}
+
+function renderPostList(page) {
+  currentPage = page;
+  const start = (page - 1) * POSTS_PER_PAGE;
+  const end = start + POSTS_PER_PAGE;
+  const pagePosts = allPosts.slice(start, end);
+  const list = document.getElementById('posts-list');
+
+  list.innerHTML = pagePosts.map((post, i) => {
+    const excerpt = truncate(stripHtml(post.content || post.description || ''), 200);
+    const thumb = getFirstImage(post.content || post.description || '');
+    const date = formatDate(post.pubDate);
+    const globalIdx = start + i;
+    return `
+      <div class="post-summary" onclick="showFullPost(${globalIdx})">
+        <div class="post-meta">
+          <span class="post-date">${date}</span>
+        </div>
+        ${thumb ? `<img src="${thumb}" alt="" class="post-thumb">` : ''}
+        <h2>${post.title}</h2>
+        <p class="post-excerpt">${excerpt}</p>
+        <button class="read-more-btn">Read full post →</button>
+      </div>`;
+  }).join('');
+
+  renderPagination();
+  list.style.display = 'flex';
+  list.style.flexDirection = 'column';
+}
+
+function renderPagination() {
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+  if (totalPages <= 1) return;
+  const pag = document.getElementById('pagination');
+  let html = '';
+  html += `<button class="page-btn" onclick="renderPostList(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
+  for (let i = 1; i <= totalPages; i++) {
+    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="renderPostList(${i})">${i}</button>`;
+  }
+  html += `<button class="page-btn" onclick="renderPostList(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
+  pag.innerHTML = html;
+  pag.style.display = 'flex';
+}
+
+function showFullPost(idx) {
+  const post = allPosts[idx];
+  document.getElementById('full-post-title').textContent = post.title;
+  document.getElementById('full-post-date').textContent = formatDate(post.pubDate);
+  document.getElementById('full-post-body').innerHTML = post.content || post.description || '';
+  document.getElementById('posts-view').style.display = 'none';
+  document.getElementById('full-post-view').style.display = 'block';
+  window.scrollTo(0, 0);
+  gtag('event', 'view_post', {event_category: 'blog', event_label: post.title});
+}
+
+document.getElementById('back-btn').addEventListener('click', function() {
+  document.getElementById('full-post-view').style.display = 'none';
+  document.getElementById('posts-view').style.display = 'block';
+  window.scrollTo(0, 0);
+});
+
 async function loadPosts() {
-  const container = document.getElementById('posts-container');
-
   try {
-    const res = await fetch(RSS_URL);
+    const res = await fetch(BLOGGER_FEED);
     const data = await res.json();
-
-    if (data.status !== 'ok' || !data.items || data.items.length === 0) {
-      throw new Error('No posts found');
-    }
-
-    const postsHtml = data.items.map(item => {
-      const excerpt = truncate(stripHtml(item.description || item.content || ''), 220);
-      const date = formatDate(item.pubDate);
-      return `
-        <a class="post-card" href="${item.link}" target="_blank"
-           onclick="gtag('event', 'click', {event_category: 'blog_post', event_label: '${item.title.replace(/'/g, '')}'});">
-          <div class="post-meta">
-            <span class="post-date">${date}</span>
-            <span class="post-source">Substack</span>
-          </div>
-          <h2 class="post-title">${item.title}</h2>
-          <p class="post-excerpt">${excerpt}</p>
-          <span class="post-readmore">Read full post on Substack →</span>
-        </a>`;
-    }).join('');
-
-    container.innerHTML = `<div class="posts-grid">${postsHtml}</div>`;
-
-  } catch (err) {
-    container.innerHTML = `
-      <div class="error-state">
+    document.getElementById('loading-state').style.display = 'none';
+    if (data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('No posts');
+    allPosts = data.items;
+    renderPostList(1);
+  } catch(e) {
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('posts-list').style.display = 'block';
+    document.getElementById('posts-list').innerHTML = `
+      <div class="error-box">
         <h3>Posts coming soon</h3>
-        <p>Chuck's blog is powered by Substack. Head over there to read the latest, or subscribe to get new posts in your inbox.</p>
-        <a href="${SUBSTACK_URL}" target="_blank">Visit Substack →</a>
+        <p>Chuck is warming up the keyboard. Check back shortly for the first installment of The Chuck Stops Here.</p>
       </div>`;
   }
 }
 
 loadPosts();
 </script>
-
 </body>
 </html>

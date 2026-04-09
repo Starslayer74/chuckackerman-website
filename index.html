@@ -137,20 +137,20 @@
     .featured-cover img { width: 160px; }
   }
 
-  /* LATEST POST PREVIEW */
-  .latest-post-bg { background: #f2f4f8; }
-  .latest-post-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 2rem; display: block; text-decoration: none; color: inherit; transition: box-shadow 0.2s; }
-  .latest-post-card:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.1); }
-  .latest-post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
-  .latest-post-date { font-size: 12px; color: #0e7c6b; font-weight: 500; letter-spacing: 0.04em; }
-  .latest-post-source { font-size: 11px; color: #aaa; letter-spacing: 0.06em; text-transform: uppercase; }
-  .latest-post-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; color: #0f2a4a; line-height: 1.3; margin-bottom: 0.75rem; }
-  .latest-post-excerpt { font-size: 14px; color: #556; line-height: 1.75; margin-bottom: 1.25rem; }
-  .latest-post-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
-  .latest-post-readmore { font-size: 13px; color: var(--teal); font-weight: 500; }
-  .latest-post-allposts { font-size: 13px; color: #889; text-decoration: none; }
-  .latest-post-allposts:hover { color: var(--teal); }
-  .latest-post-loading { text-align: center; padding: 2rem; font-size: 14px; color: #778; }
+  /* BLOG PREVIEW */
+  .blog-preview-bg { background: #f2f4f8; }
+  .blog-preview-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 2rem; display: block; text-decoration: none; color: inherit; transition: box-shadow 0.2s; }
+  .blog-preview-card:hover { box-shadow: 0 4px 20px rgba(15,42,74,0.1); }
+  .blog-preview-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+  .blog-preview-date { font-size: 12px; color: #0e7c6b; font-weight: 500; letter-spacing: 0.04em; }
+  .blog-preview-thumb { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; }
+  .blog-preview-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #0f2a4a; line-height: 1.3; margin-bottom: 0.75rem; }
+  .blog-preview-excerpt { font-size: 14px; color: #556; line-height: 1.75; margin-bottom: 1.25rem; }
+  .blog-preview-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+  .blog-preview-readmore { font-size: 13px; color: var(--teal); font-weight: 500; }
+  .blog-preview-all { font-size: 13px; color: #889; }
+  .blog-preview-loading { text-align: center; padding: 2rem; font-size: 14px; color: #778; }
+  .blog-preview-blogname { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 0.25rem; }
 </style>
 </head>
 <body>
@@ -325,13 +325,14 @@
 </section>
 
 
+
 <!-- LATEST FROM THE BLOG -->
-<section class="section latest-post-bg" id="blog-preview">
+<section class="section blog-preview-bg" id="blog">
   <div class="section-inner">
     <p class="section-label">Latest writing</p>
-    <h2 class="section-title">From the blog</h2>
-    <div id="latest-post-container">
-      <div class="latest-post-loading">Loading latest post...</div>
+    <h2 class="section-title">The Chuck Stops Here</h2>
+    <div id="blog-preview-container">
+      <div class="blog-preview-loading">Loading latest post...</div>
     </div>
   </div>
 </section>
@@ -365,57 +366,60 @@
 </footer>
 
 
+
+
 <script>
 (function() {
-  const API_KEY = 'gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz';
-  const RSS_URL = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.substack.com/feed') + '&api_key=' + API_KEY + '&count=1';
+  const FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=1';
 
-  function formatDate(dateStr) {
-    const d = new Date(dateStr);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  function formatDate(d) {
+    return new Date(d).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
   }
-
   function stripHtml(html) {
-    const tmp = document.createElement('div');
-    tmp.innerHTML = html;
-    return tmp.textContent || tmp.innerText || '';
+    const t = document.createElement('div'); t.innerHTML = html;
+    return t.textContent || t.innerText || '';
+  }
+  function truncate(str, n) {
+    if (str.length <= n) return str;
+    return str.substring(0, str.lastIndexOf(' ', n)) + '...';
+  }
+  function getFirstImage(html) {
+    const t = document.createElement('div'); t.innerHTML = html;
+    const img = t.querySelector('img');
+    return img ? img.src : null;
   }
 
-  function truncate(str, maxLen) {
-    if (str.length <= maxLen) return str;
-    return str.substring(0, str.lastIndexOf(' ', maxLen)) + '...';
-  }
-
-  fetch(RSS_URL)
+  fetch(FEED)
     .then(r => r.json())
     .then(data => {
-      const container = document.getElementById('latest-post-container');
-      if (!container) return;
-      if (data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('No posts');
-      const item = data.items[0];
-      const excerpt = truncate(stripHtml(item.description || item.content || ''), 280);
-      const date = formatDate(item.pubDate);
-      container.innerHTML = `
-        <a class="latest-post-card" href="${item.link}" target="_blank"
-           onclick="gtag('event','click',{event_category:'blog_post',event_label:'home_preview'});">
-          <div class="latest-post-meta">
-            <span class="latest-post-date">${date}</span>
-            <span class="latest-post-source">Substack</span>
-          </div>
-          <h3 class="latest-post-title">${item.title}</h3>
-          <p class="latest-post-excerpt">${excerpt}</p>
-          <div class="latest-post-footer">
-            <span class="latest-post-readmore">Read full post on Substack →</span>
-            <a href="blog.html" class="latest-post-allposts" onclick="event.stopPropagation();">See all posts →</a>
+      const c = document.getElementById('blog-preview-container');
+      if (!c) return;
+      if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error();
+      const post = data.items[0];
+      const excerpt = truncate(stripHtml(post.content || post.description || ''), 240);
+      const thumb = getFirstImage(post.content || post.description || '');
+      const date = formatDate(post.pubDate);
+      c.innerHTML = `
+        <a class="blog-preview-card" href="blog.html"
+           onclick="gtag('event','click',{event_category:'blog_preview',event_label:'home_latest'});">
+          <p class="blog-preview-blogname">The Chuck Stops Here</p>
+          <div class="blog-preview-meta"><span class="blog-preview-date">${date}</span></div>
+          ${thumb ? `<img src="${thumb}" alt="" class="blog-preview-thumb">` : ''}
+          <h3 class="blog-preview-title">${post.title}</h3>
+          <p class="blog-preview-excerpt">${excerpt}</p>
+          <div class="blog-preview-footer">
+            <span class="blog-preview-readmore">Read full post →</span>
+            <span class="blog-preview-all">See all posts on the blog page</span>
           </div>
         </a>`;
     })
     .catch(() => {
-      const container = document.getElementById('latest-post-container');
-      if (container) container.innerHTML = `
-        <div style="text-align:center; padding:2rem; background:#fff; border-radius:12px; border:0.5px solid #dde3ec;">
-          <p style="font-size:14px; color:#667; margin-bottom:0.75rem;">New posts coming soon. Follow along on Substack.</p>
-          <a href="https://chuckackerman.substack.com" target="_blank" style="font-size:13px; color:#0e7c6b; font-weight:500;">Visit Substack →</a>
+      const c = document.getElementById('blog-preview-container');
+      if (c) c.innerHTML = `
+        <div style="text-align:center;padding:2rem;background:#fff;border-radius:12px;border:0.5px solid #dde3ec;">
+          <p style="font-family:'Playfair Display',serif;font-size:18px;color:#0f2a4a;margin-bottom:0.5rem;">The Chuck Stops Here</p>
+          <p style="font-size:14px;color:#667;margin-bottom:0.75rem;">First post coming soon. Chuck is warming up the keyboard.</p>
+          <a href="blog.html" style="font-size:13px;color:#0e7c6b;font-weight:500;">Visit the blog →</a>
         </div>`;
     });
 })();
