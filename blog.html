@@ -158,8 +158,6 @@
 </footer>
 
 <script>
-const BLOGGER_FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default?alt=rss') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=50&_=' + Date.now()';
-
 const POSTS_PER_PAGE = 5;
 let allPosts = [];
 let currentPage = 1;
@@ -168,92 +166,86 @@ function formatDate(dateStr) {
   const d = new Date(dateStr);
   return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
-
-function stripHtml(html) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  return tmp.textContent || tmp.innerText || '';
+function stripHtml(h) {
+  const t = document.createElement('div'); t.innerHTML = h;
+  return t.textContent || t.innerText || '';
 }
-
-function truncate(str, maxLen) {
-  if (str.length <= maxLen) return str;
-  return str.substring(0, str.lastIndexOf(' ', maxLen)) + '...';
+function truncate(str, n) {
+  if (str.length <= n) return str;
+  return str.substring(0, str.lastIndexOf(' ', n)) + '...';
 }
-
-function getFirstImage(html) {
-  const tmp = document.createElement('div');
-  tmp.innerHTML = html;
-  const img = tmp.querySelector('img');
+function getFirstImage(h) {
+  const t = document.createElement('div'); t.innerHTML = h;
+  const img = t.querySelector('img');
   return img ? img.src : null;
 }
-
+function parseEntry(entry) {
+  const title = entry.title.$t;
+  const published = entry.published.$t;
+  const content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+  const linkObj = (entry.link || []).find(l => l.rel === 'alternate');
+  const url = linkObj ? linkObj.href : '#';
+  return { title, published, content, url };
+}
 function renderPostList(page) {
   currentPage = page;
   const start = (page - 1) * POSTS_PER_PAGE;
-  const end = start + POSTS_PER_PAGE;
-  const pagePosts = allPosts.slice(start, end);
+  const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
   const list = document.getElementById('posts-list');
-
   list.innerHTML = pagePosts.map((post, i) => {
-    const excerpt = truncate(stripHtml(post.content || post.description || ''), 200);
-    const thumb = getFirstImage(post.content || post.description || '');
-    const date = formatDate(post.pubDate);
+    const excerpt = truncate(stripHtml(post.content), 200);
+    const thumb = getFirstImage(post.content);
+    const date = formatDate(post.published);
     const globalIdx = start + i;
     return `
       <div class="post-summary" onclick="showFullPost(${globalIdx})">
-        <div class="post-meta">
-          <span class="post-date">${date}</span>
-        </div>
+        <div class="post-meta"><span class="post-date">${date}</span></div>
         ${thumb ? `<img src="${thumb}" alt="" class="post-thumb">` : ''}
         <h2>${post.title}</h2>
         <p class="post-excerpt">${excerpt}</p>
         <button class="read-more-btn">Read full post →</button>
       </div>`;
   }).join('');
-
   renderPagination();
   list.style.display = 'flex';
   list.style.flexDirection = 'column';
 }
-
 function renderPagination() {
   const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
   if (totalPages <= 1) return;
   const pag = document.getElementById('pagination');
-  let html = '';
-  html += `<button class="page-btn" onclick="renderPostList(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Prev</button>`;
+  let h = `<button class="page-btn" onclick="renderPostList(${currentPage-1})" ${currentPage===1?'disabled':''}>← Prev</button>`;
   for (let i = 1; i <= totalPages; i++) {
-    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="renderPostList(${i})">${i}</button>`;
+    h += `<button class="page-btn ${i===currentPage?'active':''}" onclick="renderPostList(${i})">${i}</button>`;
   }
-  html += `<button class="page-btn" onclick="renderPostList(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next →</button>`;
-  pag.innerHTML = html;
+  h += `<button class="page-btn" onclick="renderPostList(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next →</button>`;
+  pag.innerHTML = h;
   pag.style.display = 'flex';
 }
-
 function showFullPost(idx) {
   const post = allPosts[idx];
   document.getElementById('full-post-title').textContent = post.title;
-  document.getElementById('full-post-date').textContent = formatDate(post.pubDate);
-  document.getElementById('full-post-body').innerHTML = post.content || post.description || '';
+  document.getElementById('full-post-date').textContent = formatDate(post.published);
+  document.getElementById('full-post-body').innerHTML = post.content;
   document.getElementById('posts-view').style.display = 'none';
   document.getElementById('full-post-view').style.display = 'block';
   window.scrollTo(0, 0);
-  gtag('event', 'view_post', {event_category: 'blog', event_label: post.title});
+  gtag('event', 'view_post', {event_category:'blog', event_label: post.title});
 }
-
 document.getElementById('back-btn').addEventListener('click', function() {
   document.getElementById('full-post-view').style.display = 'none';
   document.getElementById('posts-view').style.display = 'block';
   window.scrollTo(0, 0);
 });
-
 async function loadPosts() {
   try {
-    const res = await fetch(BLOGGER_FEED);
+    const url = 'https://chuckackerman.blogspot.com/feeds/posts/default?alt=json&max-results=50&_=' + Date.now();
+    const res = await fetch(url);
     const data = await res.json();
     document.getElementById('loading-state').style.display = 'none';
-    if (data.status !== 'ok' || !data.items || data.items.length === 0) throw new Error('No posts');
-    allPosts = data.items;
+    const entries = data.feed.entry;
+    if (!entries || entries.length === 0) throw new Error('No posts');
+    allPosts = entries.map(parseEntry);
     renderPostList(1);
   } catch(e) {
     document.getElementById('loading-state').style.display = 'none';
@@ -265,7 +257,6 @@ async function loadPosts() {
       </div>`;
   }
 }
-
 loadPosts();
 </script>
 </body>

@@ -370,42 +370,44 @@
 
 <script>
 (function() {
-  const FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default?alt=rss') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=1&_=' + Date.now()';
-
   function formatDate(d) {
     return new Date(d).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
   }
-  function stripHtml(html) {
-    const t = document.createElement('div'); t.innerHTML = html;
+  function stripHtml(h) {
+    const t = document.createElement('div'); t.innerHTML = h;
     return t.textContent || t.innerText || '';
   }
   function truncate(str, n) {
     if (str.length <= n) return str;
     return str.substring(0, str.lastIndexOf(' ', n)) + '...';
   }
-  function getFirstImage(html) {
-    const t = document.createElement('div'); t.innerHTML = html;
+  function getFirstImage(h) {
+    const t = document.createElement('div'); t.innerHTML = h;
     const img = t.querySelector('img');
     return img ? img.src : null;
   }
 
-  fetch(FEED)
+  fetch('https://chuckackerman.blogspot.com/feeds/posts/default?alt=json&max-results=1&_=' + Date.now())
     .then(r => r.json())
     .then(data => {
       const c = document.getElementById('blog-preview-container');
       if (!c) return;
-      if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error();
-      const post = data.items[0];
-      const excerpt = truncate(stripHtml(post.content || post.description || ''), 240);
-      const thumb = getFirstImage(post.content || post.description || '');
-      const date = formatDate(post.pubDate);
+      const entries = data.feed.entry;
+      if (!entries || !entries.length) throw new Error();
+      const entry = entries[0];
+      const title = entry.title.$t;
+      const published = entry.published.$t;
+      const content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
+      const excerpt = truncate(stripHtml(content), 240);
+      const thumb = getFirstImage(content);
+      const date = formatDate(published);
       c.innerHTML = `
         <a class="blog-preview-card" href="blog.html"
            onclick="gtag('event','click',{event_category:'blog_preview',event_label:'home_latest'});">
           <p class="blog-preview-blogname">The Chuck Stops Here</p>
           <div class="blog-preview-meta"><span class="blog-preview-date">${date}</span></div>
           ${thumb ? `<img src="${thumb}" alt="" class="blog-preview-thumb">` : ''}
-          <h3 class="blog-preview-title">${post.title}</h3>
+          <h3 class="blog-preview-title">${title}</h3>
           <p class="blog-preview-excerpt">${excerpt}</p>
           <div class="blog-preview-footer">
             <span class="blog-preview-readmore">Read full post →</span>
@@ -418,12 +420,11 @@
       if (c) c.innerHTML = `
         <div style="text-align:center;padding:2rem;background:#fff;border-radius:12px;border:0.5px solid #dde3ec;">
           <p style="font-family:'Playfair Display',serif;font-size:18px;color:#0f2a4a;margin-bottom:0.5rem;">The Chuck Stops Here</p>
-          <p style="font-size:14px;color:#667;margin-bottom:0.75rem;">First post coming soon. Chuck is warming up the keyboard.</p>
+          <p style="font-size:14px;color:#667;margin-bottom:0.75rem;">First post coming soon.</p>
           <a href="blog.html" style="font-size:13px;color:#0e7c6b;font-weight:500;">Visit the blog →</a>
         </div>`;
     });
 })();
 </script>
-
 </body>
 </html>
