@@ -370,7 +370,7 @@
 
 <script>
 (function() {
-  const FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=1';
+  const FEED = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default') + '&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=1&_=' + Date.now()';
 
   function formatDate(d) {
     return new Date(d).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'});
