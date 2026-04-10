@@ -186,13 +186,11 @@ function renderPostList(page) {
   const list = document.getElementById('posts-list');
   list.innerHTML = pagePosts.map((post, i) => {
     const excerpt = truncate(stripHtml(post.content || post.description || ''), 200);
-    const thumb = getFirstImage(post.content || post.description || '');
     const date = formatDate(post.pubDate);
     const globalIdx = start + i;
     return `
       <div class="post-summary" onclick="showFullPost(${globalIdx})">
         <div class="post-meta"><span class="post-date">${date}</span></div>
-        ${thumb ? `<img src="${thumb}" alt="" class="post-thumb">` : ''}
         <h2>${post.title}</h2>
         <p class="post-excerpt">${excerpt}</p>
         <button class="read-more-btn">Read full post →</button>

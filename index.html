@@ -396,14 +396,12 @@
       if (data.status !== 'ok' || !data.items || !data.items.length) throw new Error(data.message);
       const post = data.items[0];
       const excerpt = truncate(stripHtml(post.content || post.description || ''), 240);
-      const thumb = getFirstImage(post.content || post.description || '');
       const date = formatDate(post.pubDate);
       c.innerHTML = `
         <a class="blog-preview-card" href="blog.html"
            onclick="gtag('event','click',{event_category:'blog_preview',event_label:'home_latest'});">
           <p class="blog-preview-blogname">The Chuck Stops Here</p>
           <div class="blog-preview-meta"><span class="blog-preview-date">${date}</span></div>
-          ${thumb ? `<img src="${thumb}" alt="" class="blog-preview-thumb">` : ''}
           <h3 class="blog-preview-title">${post.title}</h3>
           <p class="blog-preview-excerpt">${excerpt}</p>
           <div class="blog-preview-footer">
