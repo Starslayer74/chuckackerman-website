@@ -179,23 +179,15 @@ function getFirstImage(h) {
   const img = t.querySelector('img');
   return img ? img.src : null;
 }
-function parseEntry(entry) {
-  const title = entry.title.$t;
-  const published = entry.published.$t;
-  const content = entry.content ? entry.content.$t : (entry.summary ? entry.summary.$t : '');
-  const linkObj = (entry.link || []).find(l => l.rel === 'alternate');
-  const url = linkObj ? linkObj.href : '#';
-  return { title, published, content, url };
-}
 function renderPostList(page) {
   currentPage = page;
   const start = (page - 1) * POSTS_PER_PAGE;
   const pagePosts = allPosts.slice(start, start + POSTS_PER_PAGE);
   const list = document.getElementById('posts-list');
   list.innerHTML = pagePosts.map((post, i) => {
-    const excerpt = truncate(stripHtml(post.content), 200);
-    const thumb = getFirstImage(post.content);
-    const date = formatDate(post.published);
+    const excerpt = truncate(stripHtml(post.content || post.description || ''), 200);
+    const thumb = getFirstImage(post.content || post.description || '');
+    const date = formatDate(post.pubDate);
     const globalIdx = start + i;
     return `
       <div class="post-summary" onclick="showFullPost(${globalIdx})">
@@ -225,8 +217,8 @@ function renderPagination() {
 function showFullPost(idx) {
   const post = allPosts[idx];
   document.getElementById('full-post-title').textContent = post.title;
-  document.getElementById('full-post-date').textContent = formatDate(post.published);
-  document.getElementById('full-post-body').innerHTML = post.content;
+  document.getElementById('full-post-date').textContent = formatDate(post.pubDate);
+  document.getElementById('full-post-body').innerHTML = post.content || post.description || '';
   document.getElementById('posts-view').style.display = 'none';
   document.getElementById('full-post-view').style.display = 'block';
   window.scrollTo(0, 0);
@@ -239,15 +231,18 @@ document.getElementById('back-btn').addEventListener('click', function() {
 });
 async function loadPosts() {
   try {
-    const url = 'https://chuckackerman.blogspot.com/feeds/posts/default?alt=json&max-results=50&_=' + Date.now();
+    const feedUrl = encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default?alt=rss');
+    const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=50&_=${Date.now()}`;
     const res = await fetch(url);
     const data = await res.json();
     document.getElementById('loading-state').style.display = 'none';
-    const entries = data.feed.entry;
-    if (!entries || entries.length === 0) throw new Error('No posts');
-    allPosts = entries.map(parseEntry);
+    if (data.status !== 'ok' || !data.items || data.items.length === 0) {
+      throw new Error('No posts: ' + data.message);
+    }
+    allPosts = data.items;
     renderPostList(1);
   } catch(e) {
+    console.error('Blog load error:', e);
     document.getElementById('loading-state').style.display = 'none';
     document.getElementById('posts-list').style.display = 'block';
     document.getElementById('posts-list').innerHTML = `
