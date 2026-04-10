@@ -241,7 +241,13 @@ async function loadPosts() {
       throw new Error('No posts: ' + data.message);
     }
     allPosts = data.items;
-    renderPostList(1);
+    const params = new URLSearchParams(window.location.search);
+    const postParam = params.get('post');
+    if (postParam !== null && !isNaN(parseInt(postParam))) {
+      showFullPost(parseInt(postParam));
+    } else {
+      renderPostList(1);
+    }
   } catch(e) {
     console.error('Blog load error:', e);
     document.getElementById('loading-state').style.display = 'none';
