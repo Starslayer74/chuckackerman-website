@@ -375,6 +375,7 @@
   }
   function stripHtml(h) {
     const t = document.createElement('div'); t.innerHTML = h;
+    t.querySelectorAll('img, figure, .separator').forEach(el => el.remove());
     return t.textContent || t.innerText || '';
   }
   function truncate(str, n) {
@@ -397,18 +398,19 @@
       const post = data.items[0];
       const excerpt = truncate(stripHtml(post.content || post.description || ''), 240);
       const date = formatDate(post.pubDate);
+      const postUrl = post.link || post.guid || 'blog.html';
       c.innerHTML = `
-        <a class="blog-preview-card" href="blog.html"
-           onclick="gtag('event','click',{event_category:'blog_preview',event_label:'home_latest'});">
+        <div class="blog-preview-card">
           <p class="blog-preview-blogname">The Chuck Stops Here</p>
           <div class="blog-preview-meta"><span class="blog-preview-date">${date}</span></div>
           <h3 class="blog-preview-title">${post.title}</h3>
           <p class="blog-preview-excerpt">${excerpt}</p>
           <div class="blog-preview-footer">
-            <span class="blog-preview-readmore">Read full post →</span>
-            <span class="blog-preview-all">See all posts on the blog page</span>
+            <a href="blog.html" class="blog-preview-readmore"
+               onclick="gtag('event','click',{event_category:'blog_preview',event_label:'home_latest'});">Read full post →</a>
+            <a href="blog.html" class="blog-preview-all">See all posts on the blog page</a>
           </div>
-        </a>`;
+        </div>`;
     })
     .catch(e => {
       console.error('Preview error:', e);

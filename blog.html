@@ -168,6 +168,7 @@ function formatDate(dateStr) {
 }
 function stripHtml(h) {
   const t = document.createElement('div'); t.innerHTML = h;
+  t.querySelectorAll('img, figure, .separator').forEach(el => el.remove());
   return t.textContent || t.innerText || '';
 }
 function truncate(str, n) {
@@ -216,7 +217,9 @@ function showFullPost(idx) {
   const post = allPosts[idx];
   document.getElementById('full-post-title').textContent = post.title;
   document.getElementById('full-post-date').textContent = formatDate(post.pubDate);
-  document.getElementById('full-post-body').innerHTML = post.content || post.description || '';
+  let content = post.content || post.description || '';
+  content = content.replace(/href="https?:\/\/chuckackerman\.blogspot\.com[^"]*"/g, 'href="blog.html"');
+  document.getElementById('full-post-body').innerHTML = content;
   document.getElementById('posts-view').style.display = 'none';
   document.getElementById('full-post-view').style.display = 'block';
   window.scrollTo(0, 0);
