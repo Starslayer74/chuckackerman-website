@@ -105,6 +105,23 @@
     .nav-links { display: none; }
     .full-post-header h1 { font-size: 24px; }
   }
+
+  /* SUBSCRIBE SECTION */
+  .subscribe-section { background: var(--navy); padding: 3rem 2rem; margin-top: 3rem; }
+  .subscribe-inner { max-width: 540px; margin: 0 auto; text-align: center; }
+  .subscribe-eyebrow { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
+  .subscribe-title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .subscribe-desc { font-size: 14px; color: var(--text-muted-dark); line-height: 1.75; margin-bottom: 1.5rem; }
+  .subscribe-form-wrap { display: flex; gap: 8px; max-width: 420px; margin: 0 auto 0.75rem; }
+  .subscribe-input { flex: 1; padding: 11px 16px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--text-on-dark); outline: none; transition: border-color 0.2s; }
+  .subscribe-input::placeholder { color: var(--text-muted-dark); }
+  .subscribe-input:focus { border-color: var(--accent); }
+  .subscribe-btn { background: var(--accent); color: #1a1200; font-size: 14px; font-weight: 500; font-family: 'DM Sans', sans-serif; padding: 11px 22px; border: none; border-radius: 6px; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+  .subscribe-btn:hover { opacity: 0.88; }
+  .subscribe-btn:disabled { opacity: 0.6; cursor: default; }
+  .subscribe-status { font-size: 14px; min-height: 20px; margin-top: 0.5rem; }
+  .subscribe-fine { font-size: 12px; color: #5a7a99; margin-top: 0.75rem; }
+  @media (max-width: 480px) { .subscribe-form-wrap { flex-direction: column; } }
 </style>
 </head>
 <body>
@@ -151,6 +168,39 @@
 
   </div>
 </div>
+
+
+<div class="subscribe-section" id="subscribe">
+  <div class="subscribe-inner">
+    <p class="subscribe-eyebrow">The Chuck Stops Here</p>
+    <h3 class="subscribe-title">Get new posts in your inbox</h3>
+    <p class="subscribe-desc">New posts delivered straight to you — no spam, no nonsense. Just Chuck's thoughts when he has them, which is occasionally.</p>
+    <div class="subscribe-form-wrap" id="subscribe-form-wrap">
+      <form action="https://ece171bd.sibforms.com/serve/MUIFAETs0eOGaxDePezD_oHScMm_bS1kuv6PdRxQ2p2-pPL31OBKbrYgy_zYO0WNYS3lQHwM1axkln41pGI18IeLyeSYGqeSBAovJU5amVHTWmwObRgW3ZWlEEe9gzBs5Nwq5ifpvmiRhpuh-nVTQWldCuUUJTO9cXN1XMq7Q81F7490rZHRzV93G6iaj67hQCFSBWGE6hH5sr31rg==" method="POST" target="subscribe_frame" onsubmit="handleBlogSubscribe()">
+        <input type="email" name="EMAIL" id="subscribe-email" placeholder="your@email.com" class="subscribe-input" required>
+        <button type="submit" class="subscribe-btn">Subscribe</button>
+      </form>
+      <iframe name="subscribe_frame" style="display:none;"></iframe>
+    </div>
+    <p class="subscribe-status" id="subscribe-status"></p>
+    <p class="subscribe-fine">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<script>
+function handleBlogSubscribe() {
+  const email = document.getElementById('subscribe-email').value.trim();
+  if (!email) return;
+  setTimeout(function() {
+    document.getElementById('subscribe-form-wrap').style.display = 'none';
+    const status = document.getElementById('subscribe-status');
+    status.textContent = '✓ You are subscribed! Look out for new posts from Chuck.';
+    status.style.color = '#12a088';
+    status.style.fontSize = '15px';
+    gtag('event', 'subscribe', {event_category: 'email', event_label: 'blog_subscribe'});
+  }, 800);
+}
+</script>
 
 <footer class="footer">
   <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Baltimore, MD</span>

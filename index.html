@@ -151,6 +151,19 @@
   .blog-preview-all { font-size: 13px; color: #889; }
   .blog-preview-loading { text-align: center; padding: 2rem; font-size: 14px; color: #778; }
   .blog-preview-blogname { font-family: 'Playfair Display', serif; font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 0.25rem; }
+
+  /* SUBSCRIBE STRIP (index) */
+  .subscribe-strip { background: var(--navy-mid); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap; }
+  .subscribe-strip-text { color: var(--text-on-dark); font-size: 14px; }
+  .subscribe-strip-text strong { color: var(--accent-light); display: block; margin-bottom: 2px; }
+  .subscribe-strip-form { display: flex; gap: 8px; flex-shrink: 0; }
+  .subscribe-strip-input { padding: 9px 14px; font-size: 13px; font-family: 'DM Sans', sans-serif; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.08); color: var(--text-on-dark); outline: none; width: 200px; }
+  .subscribe-strip-input::placeholder { color: var(--text-muted-dark); }
+  .subscribe-strip-input:focus { border-color: var(--accent); }
+  .subscribe-strip-btn { background: var(--accent); color: #1a1200; font-size: 13px; font-weight: 500; font-family: 'DM Sans', sans-serif; padding: 9px 18px; border: none; border-radius: 6px; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; }
+  .subscribe-strip-btn:hover { opacity: 0.88; }
+  .subscribe-strip-status { font-size: 13px; color: #12a088; margin-top: 6px; width: 100%; }
+  @media (max-width: 680px) { .subscribe-strip { flex-direction: column; } .subscribe-strip-input { width: 100%; } }
 </style>
 </head>
 <body>
@@ -334,6 +347,37 @@
     <div id="blog-preview-container">
       <div class="blog-preview-loading">Loading latest post...</div>
     </div>
+
+    <div class="subscribe-strip">
+      <div class="subscribe-strip-text">
+        <strong>Never miss a post</strong>
+        Get new posts from The Chuck Stops Here delivered to your inbox.
+      </div>
+      <div>
+        <form action="https://ece171bd.sibforms.com/serve/MUIFAETs0eOGaxDePezD_oHScMm_bS1kuv6PdRxQ2p2-pPL31OBKbrYgy_zYO0WNYS3lQHwM1axkln41pGI18IeLyeSYGqeSBAovJU5amVHTWmwObRgW3ZWlEEe9gzBs5Nwq5ifpvmiRhpuh-nVTQWldCuUUJTO9cXN1XMq7Q81F7490rZHRzV93G6iaj67hQCFSBWGE6hH5sr31rg==" method="POST" target="index_subscribe_frame" onsubmit="handleIndexSubscribe()" style="display:flex; gap:8px;">
+          <input type="email" name="EMAIL" id="index-subscribe-email" placeholder="your@email.com" class="subscribe-strip-input" required>
+          <button type="submit" class="subscribe-strip-btn">Subscribe</button>
+        </form>
+        <iframe name="index_subscribe_frame" style="display:none;"></iframe>
+        <p class="subscribe-strip-status" id="index-subscribe-status"></p>
+      </div>
+    </div>
+
+<script>
+function handleIndexSubscribe() {
+  const email = document.getElementById('index-subscribe-email').value.trim();
+  if (!email) return;
+  setTimeout(function() {
+    const status = document.getElementById('index-subscribe-status');
+    status.textContent = '✓ You are subscribed!';
+    status.style.color = '#12a088';
+    document.getElementById('index-subscribe-email').style.display = 'none';
+    document.querySelector('.subscribe-strip-btn').style.display = 'none';
+    gtag('event', 'subscribe', {event_category: 'email', event_label: 'index_subscribe'});
+  }, 800);
+}
+</script>
+
   </div>
 </section>
 
