@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bad Decisions Shop — Chuck Ackerman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Bad Decisions — the official merch store of Chuck Ackerman. T-shirts, hoodies, accessories and more.">
+<meta property="og:title" content="Bad Decisions Shop — Chuck Ackerman">
+<meta property="og:description" content="Bad decisions make good stories. We sell the shirts to prove it.">
+<meta property="og:url" content="https://chuckackerman.net/shop.html">
+<meta property="og:image" content="https://chuckackerman.net/preview.jpg">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DX84FX7ZXV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DX84FX7ZXV');
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2a4a; --navy-mid: #1a3d5c; --steel: #2e5f85;
+    --accent: #e8a832; --accent-light: #f5c96a;
+    --teal: #0e7c6b; --teal-light: #12a088;
+    --text-on-dark: #e8edf2; --text-muted-dark: #94aec4;
+    --radius-md: 8px; --radius-lg: 12px;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #f8f8f6; min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* NAV */
+  .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding-bottom: 2px; }
+  .nav-links a:hover { color: var(--accent-light); }
+  .nav-links a.active { color: var(--accent-light); border-bottom: 2px solid var(--accent); }
+
+  /* HERO */
+  .page-hero { background: var(--navy); padding: 3.5rem 2rem; text-align: center; }
+  .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.5rem; }
+  .page-hero-sub { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--accent); font-style: italic; margin-bottom: 0.75rem; }
+  .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 560px; margin: 0 auto 1.5rem; line-height: 1.75; }
+  .btn-shop-all { display: inline-block; background: var(--accent); color: #1a1200; font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-shop-all:hover { opacity: 0.88; }
+
+  /* DISCLAIMER */
+  .disclaimer { background: #fff8e6; border-left: 3px solid var(--accent); padding: 1rem 1.5rem; max-width: 880px; margin: 2rem auto 0; border-radius: 0 8px 8px 0; font-size: 13px; color: #556; line-height: 1.7; }
+  .disclaimer strong { color: #1a2a3a; }
+
+  /* SECTIONS */
+  .section { padding: 4rem 2rem; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #0e7c6b; font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 500; color: #0f2a4a; margin-bottom: 0.5rem; }
+  .section-sub { font-size: 14px; color: #667; margin-bottom: 2rem; line-height: 1.6; }
+
+  /* PRODUCT GRID */
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .product-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
+  .product-card:hover { box-shadow: 0 6px 24px rgba(15,42,74,0.12); transform: translateY(-2px); }
+  .product-img-wrap { aspect-ratio: 1; overflow: hidden; background: #f0f2f8; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.04); }
+  .product-info { padding: 1.25rem; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .product-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 500; color: #0f2a4a; line-height: 1.3; }
+  .product-desc { font-size: 12px; color: #778; line-height: 1.6; flex: 1; }
+  .product-price { font-size: 14px; font-weight: 500; color: #0e7c6b; }
+  .product-cta { font-size: 12px; color: var(--teal); font-weight: 500; margin-top: 4px; }
+
+  /* CATEGORIES */
+  .categories-bg { background: #f2f4f8; }
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+  .cat-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.25rem; text-align: center; text-decoration: none; color: inherit; transition: box-shadow 0.2s; display: block; }
+  .cat-card:hover { box-shadow: 0 4px 16px rgba(15,42,74,0.1); }
+  .cat-icon { font-size: 28px; margin-bottom: 0.5rem; }
+  .cat-name { font-size: 13px; font-weight: 500; color: #1a2a3a; }
+
+  /* SHOP CTA */
+  .shop-cta-bg { background: var(--navy); }
+  .shop-cta { text-align: center; padding: 3rem 2rem; }
+  .shop-cta h2 { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .shop-cta p { font-size: 15px; color: var(--text-muted-dark); margin-bottom: 1.5rem; line-height: 1.7; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  /* FOOTER */
+  .footer { background: #0a1e35; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 2rem; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
+  .footer a { color: #5a7a99; text-decoration: none; }
+  .footer a:hover { color: var(--accent-light); }
+
+  @media (max-width: 680px) {
+    .page-hero h1 { font-size: 30px; }
+    .nav-links { display: none; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Chuck Ackerman</a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <a href="index.html#resume">Resume</a>
+    <a href="books.html">Books</a>
+    <a href="blog.html">Blog</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <p class="page-hero-label">Merch Store</p>
+  <h1>Bad Decisions</h1>
+  <p class="page-hero-sub">Bad decisions make good stories. We sell the shirts to prove it.</p>
+  <p>T-shirts, hoodies, accessories, and more — because life is too short for boring clothes.</p>
+  <a href="https://shop.chuckackerman.net/albums/511069-sfw" target="_blank" class="btn-shop-all" onclick="gtag('event','click',{event_category:'shop',event_label:'hero_shop_all'});">Browse All Designs →</a>
+</div>
+
+<div class="section-inner">
+  <div class="disclaimer">
+    <strong>A note on the store:</strong> The featured designs below are family-friendly, but the full store contains albums with adult-themed and NSFW humor. Those designs are meant to be funny and do not necessarily reflect my personal views on any topic. Browse at your own discretion — or don't, I'm not your mom.
+  </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section" style="background:#fff;">
+  <div class="section-inner">
+    <p class="section-label">Featured designs</p>
+    <h2 class="section-title">Staff picks</h2>
+    <p class="section-sub">A handpicked selection from the SFW collection. Click any design to shop on the store.</p>
+    <div class="product-grid">
+      
+      <a class="product-card" href="https://shop.chuckackerman.net/products/90754695-charm-city-usa-retro-baltimore-skyline-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'Charm City USA Retro Baltimore Skyline'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/90754695_0/1776463786/i_m:bi_production_blanks_a59x1cgomgu5lprfjlmi_1462829024,c_0_0_470x,s_313,q_90.jpg" alt="Charm City USA Retro Baltimore Skyline">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Charm City USA Retro Baltimore Skyline</h3>
+          <p class="product-desc">Neon pop-art Baltimore skyline for locals who know the reality of the daily grind. Wear it loud and represent Charm City.</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+      <a class="product-card" href="https://shop.chuckackerman.net/products/2384024-straight-outta-parkville-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'Straight Outta Parkville'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/2384024_0/1519253986/i_m:bi_production_blanks_ekerz3afkzxin2pgqj8h_1462829018,c_-9_0_489x,s_313,q_90.jpg" alt="Straight Outta Parkville">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Straight Outta Parkville</h3>
+          <p class="product-desc">WHY ARE THERE HELICOPTERS IN THE SKY???</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+      <a class="product-card" href="https://shop.chuckackerman.net/products/37571062-setect-astronomy-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'Setect Astronomy'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/37571062_0/1671480861/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg" alt="Setect Astronomy">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Setect Astronomy</h3>
+          <p class="product-desc">Too many secrets.</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+      <a class="product-card" href="https://shop.chuckackerman.net/products/23203136-poe-dancing-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'Poe Dancing'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/23203136_0/1626905998/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg" alt="Poe Dancing">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Poe Dancing</h3>
+          <p class="product-desc">Edgar Allen Poe as you've never seen him before.</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+      <a class="product-card" href="https://shop.chuckackerman.net/products/39436910-gen-x-camping-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'Gen X Camping'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/39436910_0/1676238089/i_m:bi_production_blanks_ekerz3afkzxin2pgqj8h_1462829018,c_0_0_470x,s_313,q_90.jpg" alt="Gen X Camping">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">Gen X Camping</h3>
+          <p class="product-desc">For the Gen X camper who does it old school.</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+      <a class="product-card" href="https://shop.chuckackerman.net/products/90713188-rip-my-wallet-wrestlemania-t-shirt-t-shirt" target="_blank" onclick="gtag('event','click',{event_category:'shop',event_label:'RIP My Wallet — WrestleMania'});">
+        <div class="product-img-wrap">
+          <img src="https://images.teepublic.com/derived/production/designs/90713188_0/1776395591/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg" alt="RIP My Wallet — WrestleMania">
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">RIP My Wallet — WrestleMania</h3>
+          <p class="product-desc">A humorous tribute to the financial sacrifice of being a WWE fan.</p>
+          <p class="product-price">$22.00</p>
+          <span class="product-cta">Shop this design →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section categories-bg">
+  <div class="section-inner">
+    <p class="section-label">Shop by category</p>
+    <h2 class="section-title">Find your thing</h2>
+    <p class="section-sub">Browse the full store by design category or product type.</p>
+    <div class="cat-grid">
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/511029-maryland" target="_blank">
+        <div class="cat-icon">🦀</div>
+        <div class="cat-name">Maryland</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/510903-camping" target="_blank">
+        <div class="cat-icon">🏕️</div>
+        <div class="cat-name">Camping</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/510902-wrestling" target="_blank">
+        <div class="cat-icon">🤼</div>
+        <div class="cat-name">Wrestling</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/510906-pop-culture" target="_blank">
+        <div class="cat-icon">🎬</div>
+        <div class="cat-name">Pop Culture</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/511026-plants" target="_blank">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-name">Plants</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/511033-christmas" target="_blank">
+        <div class="cat-icon">🎄</div>
+        <div class="cat-name">Christmas</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/t-shirts" target="_blank">
+        <div class="cat-icon">👕</div>
+        <div class="cat-name">T-Shirts</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/hoodie" target="_blank">
+        <div class="cat-icon">🧥</div>
+        <div class="cat-name">Hoodies</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/stickers" target="_blank">
+        <div class="cat-icon">✨</div>
+        <div class="cat-name">Stickers</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/mug" target="_blank">
+        <div class="cat-icon">☕</div>
+        <div class="cat-name">Mugs</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/hats" target="_blank">
+        <div class="cat-icon">🧢</div>
+        <div class="cat-name">Hats</div>
+      </a>
+      <a class="cat-card" href="https://shop.chuckackerman.net/albums/511069-sfw" target="_blank">
+        <div class="cat-icon">⭐</div>
+        <div class="cat-name">All SFW</div>
+      </a>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 13px; color: #889; text-align: center; line-height: 1.7;">New albums and designs are added regularly — the categories above may not reflect everything in the store. <a href="https://shop.chuckackerman.net" target="_blank" style="color:#0e7c6b;">Visit the full store</a> to see everything.</p>
+  </div>
+</section>
+
+<!-- SHOP CTA -->
+<section class="shop-cta-bg">
+  <div class="shop-cta">
+    <h2>Ready to make a bad decision?</h2>
+    <p>The full store has designs across apparel, accessories, and home goods. New designs added regularly. Some content is NSFW — you've been warned.</p>
+    <a href="https://shop.chuckackerman.net" target="_blank" class="btn-shop-all" onclick="gtag('event','click',{event_category:'shop',event_label:'cta_full_store'});">Visit the Full Store →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="index.html">← Back to main site</a>
+</footer>
+
+</body>
+</html>
