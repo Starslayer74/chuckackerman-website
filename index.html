@@ -176,6 +176,24 @@
   .btn-shop { display: inline-block; background: var(--navy); color: #fff; font-size: 14px; font-weight: 500; padding: 11px 26px; border-radius: 6px; text-decoration: none; transition: background 0.2s; margin-top: 1rem; }
   .btn-shop:hover { background: var(--steel); }
   @media (max-width: 680px) { .shop-callout-inner { grid-template-columns: 1fr 1fr; } }
+
+  /* SHOP BANNER */
+  .shop-banner-bg { background: #fff; }
+  .shop-banner { background: #0f2a4a; border-radius: var(--radius-lg); padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .shop-banner-left { flex: 1; min-width: 260px; }
+  .shop-banner-badge { display: inline-block; background: rgba(232,168,50,0.15); border: 1px solid rgba(232,168,50,0.4); color: var(--accent); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 0.75rem; }
+  .shop-banner-name { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 4px; }
+  .shop-banner-tag { font-size: 13px; color: var(--accent); font-style: italic; margin-bottom: 0.75rem; }
+  .shop-banner-desc { font-size: 14px; color: var(--text-muted-dark); line-height: 1.7; margin-bottom: 1.25rem; }
+  .shop-banner-btn { display: inline-block; background: var(--accent); color: #1a1200; font-size: 13px; font-weight: 500; padding: 10px 22px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+  .shop-banner-btn:hover { opacity: 0.88; }
+  .shop-banner-stats { display: flex; gap: 2rem; flex-shrink: 0; }
+  .shop-stat { text-align: center; }
+  .shop-stat-num { font-size: 22px; font-weight: 500; color: var(--text-on-dark); font-family: 'Playfair Display', serif; }
+  .shop-stat-label { font-size: 11px; color: var(--text-muted-dark); letter-spacing: 0.06em; text-transform: uppercase; }
+  .shop-banner-note { font-size: 12px; color: #889; margin-top: 0.75rem; text-align: center; }
+  .shop-banner-note a { color: #0e7c6b; }
+  @media (max-width: 680px) { .shop-banner-stats { gap: 1rem; } }
 </style>
 </head>
 <body>
@@ -401,25 +419,35 @@ function handleIndexSubscribe() {
 
 
 <!-- SHOP CALLOUT -->
-<section class="section shop-callout-bg" id="shop">
+<section class="section shop-banner-bg" id="shop">
   <div class="section-inner">
     <p class="section-label">Merch store</p>
     <h2 class="section-title">Bad Decisions</h2>
-    <div class="shop-callout-text">
-      <p>Bad decisions make good stories. The official Bad Decisions merch store has t-shirts, hoodies, accessories, and more — covering everything from Maryland pride to camping fails to pop culture deep cuts. New designs and albums added regularly, so there's always something new. Some content is NSFW, but that's what the SFW album is for.</p>
-      <a href="shop.html" class="btn-shop" onclick="gtag('event','click',{event_category:'shop',event_label:'index_callout'});">Browse the Store →</a>
+    <p style="font-size:14px; color:#667; margin-bottom:1.5rem; line-height:1.7;">The official merch store — new designs and albums added regularly. T-shirts, hoodies, accessories, and more.</p>
+    <div class="shop-banner">
+      <div class="shop-banner-left">
+        <span class="shop-banner-badge">Official Store</span>
+        <div class="shop-banner-name">Bad Decisions</div>
+        <div class="shop-banner-tag">Bad decisions make good stories. We sell the shirts to prove it.</div>
+        <div class="shop-banner-desc">Designs across Maryland pride, camping, wrestling, pop culture, plants, and whatever else seemed like a good idea at the time. SFW collection always growing.</div>
+        <a href="https://shop.chuckackerman.net/albums/511069-sfw" target="_blank" class="shop-banner-btn" onclick="gtag('event','click',{event_category:'shop',event_label:'index_sfw_banner'});">Browse SFW Collection →</a>
+      </div>
+      <div class="shop-banner-stats">
+        <div class="shop-stat">
+          <div class="shop-stat-num">20+</div>
+          <div class="shop-stat-label">Designs</div>
+        </div>
+        <div class="shop-stat">
+          <div class="shop-stat-num">7+</div>
+          <div class="shop-stat-label">Albums</div>
+        </div>
+        <div class="shop-stat">
+          <div class="shop-stat-num">$22</div>
+          <div class="shop-stat-label">From</div>
+        </div>
+      </div>
     </div>
-    <div class="shop-callout-inner">
-      <a class="shop-thumb" href="shop.html">
-        <img src="https://images.teepublic.com/derived/production/designs/90754695_0/1776463786/i_m:bi_production_blanks_a59x1cgomgu5lprfjlmi_1462829024,c_0_0_470x,s_313,q_90.jpg" alt="Charm City Baltimore">
-      </a>
-      <a class="shop-thumb" href="shop.html">
-        <img src="https://images.teepublic.com/derived/production/designs/23203136_0/1626905998/i_m:bi_production_blanks_mtl53ofohwq5goqjo9ke_1462829015,c_0_0_470x,s_313,q_90.jpg" alt="Poe Dancing">
-      </a>
-      <a class="shop-thumb" href="shop.html">
-        <img src="https://images.teepublic.com/derived/production/designs/39436910_0/1676238089/i_m:bi_production_blanks_ekerz3afkzxin2pgqj8h_1462829018,c_0_0_470x,s_313,q_90.jpg" alt="Gen X Camping">
-      </a>
-    </div>
+    <p class="shop-banner-note">Store also contains NSFW designs — <a href="shop.html">visit the full shop page</a> for everything.</p>
   </div>
 </section>
 
