@@ -127,6 +127,28 @@
 
   .btn-gumroad { display: inline-block; background: var(--teal); color: #fff; font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; text-align: center; cursor: pointer; }
   .btn-gumroad:hover { opacity: 0.88; }
+
+  /* BLUEPRINT KIT WIDGET */
+  .bk-widget { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); overflow: hidden; }
+  .bk-widget-head { background: var(--navy); padding: 1rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+  .bk-widget-head-name { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--text-on-dark); }
+  .bk-widget-head-link { font-size: 11px; color: var(--accent-light); text-decoration: none; letter-spacing: 0.05em; }
+  .bk-widget-head-link:hover { color: var(--accent); }
+  .bk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .bk-item { display: flex; flex-direction: column; text-decoration: none; color: inherit; border-right: 0.5px solid #dde3ec; border-bottom: 0.5px solid #dde3ec; transition: background 0.15s; }
+  .bk-item:last-child { border-right: none; }
+  .bk-item:hover { background: #f5f7fa; }
+  .bk-img { aspect-ratio: 1; overflow: hidden; background: #f0f2f8; }
+  .bk-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+  .bk-item:hover .bk-img img { transform: scale(1.04); }
+  .bk-info { padding: 0.75rem 1rem; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .bk-title { font-size: 12px; font-weight: 500; color: #1a2a3a; line-height: 1.35; }
+  .bk-price { font-size: 12px; color: var(--teal); font-weight: 500; }
+  .bk-badge { font-size: 10px; color: #889; letter-spacing: 0.04em; }
+  .bk-widget-foot { padding: 0.75rem 1.25rem; border-top: 0.5px solid #dde3ec; text-align: center; }
+  .bk-widget-foot a { font-size: 12px; color: var(--teal); font-weight: 500; text-decoration: none; }
+  .bk-widget-foot a:hover { color: var(--teal-light); }
+  @media (max-width: 680px) { .bk-grid { grid-template-columns: repeat(2, 1fr); } .bk-item:nth-child(2) { border-right: none; } .bk-item:nth-child(3) { border-bottom: none; } }
 </style>
 </head>
 <body>
@@ -217,20 +239,50 @@
   <div class="section-inner">
     <p class="section-label">Digital store</p>
     <h2 class="section-title">Blueprint Kit</h2>
-    <p class="section-sub">Digital blueprints, templates, and resources to help you work smarter. Available on Etsy and Gumroad.</p>
+    <p class="section-sub">Digital blueprints, templates, and resources to help you work smarter.</p>
 
-    <div class="shop-banner">
-      <div class="shop-banner-left">
-        <span class="shop-banner-badge">Full Catalog</span>
-        <div class="shop-banner-name">Blueprint Kit</div>
-        <div class="shop-banner-tag">Digital blueprints for your life.</div>
-        <div class="shop-banner-desc">The full BlueprintKit catalog — digital downloads, templates, and tools. Browse the complete store on Etsy or Gumroad.</div>
-        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
-          <a href="https://blueprintkit.etsy.com" target="_blank" rel="noopener noreferrer" class="btn-etsy" onclick="gtag('event','click',{event_category:'shop',event_label:'blueprint_kit_etsy'});">Browse on Etsy →</a>
-          <a href="https://blueprintkit.gumroad.com" target="_blank" rel="noopener noreferrer" class="btn-gumroad" onclick="gtag('event','click',{event_category:'shop',event_label:'blueprint_kit_gumroad'});">Browse on Gumroad →</a>
-        </div>
+    <div class="bk-widget" style="margin-top:1.5rem;">
+      <div class="bk-widget-head">
+        <span class="bk-widget-head-name">Blueprint Kit on Etsy</span>
+        <a href="https://www.etsy.com/shop/BlueprintKit" target="_blank" rel="noopener noreferrer" class="bk-widget-head-link" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_head_link'});">Visit Shop →</a>
       </div>
-
+      <div class="bk-grid">
+        <a class="bk-item" href="https://www.etsy.com/listing/4505962389/wedding-planner-digital-download-budget" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_wedding_planner'});">
+          <div class="bk-img"><img src="https://i.etsystatic.com/42595275/r/il/544843/8074352755/il_1080xN.8074352755_h2ww.jpg" alt="Wedding Planner Digital Download" loading="lazy"></div>
+          <div class="bk-info">
+            <div class="bk-title">Wedding Planner Digital Download</div>
+            <div class="bk-price">$7.00</div>
+            <div class="bk-badge">Digital Download</div>
+          </div>
+        </a>
+        <a class="bk-item" href="https://www.etsy.com/listing/4505119897/personalized-wedding-thank-you-cards" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_thank_you_cards'});">
+          <div class="bk-img"><img src="https://i.etsystatic.com/42595275/r/il/41fdf1/8067527397/il_1080xN.8067527397_fmlk.jpg" alt="Personalized Wedding Thank You Cards" loading="lazy"></div>
+          <div class="bk-info">
+            <div class="bk-title">Personalized Wedding Thank You Cards</div>
+            <div class="bk-price">$49.55+</div>
+            <div class="bk-badge">Free Shipping</div>
+          </div>
+        </a>
+        <a class="bk-item" href="https://www.etsy.com/listing/4505062613/personalized-wedding-invitation-cards" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_invitations'});">
+          <div class="bk-img"><img src="https://i.etsystatic.com/42595275/r/il/831a00/8020772864/il_1080xN.8020772864_3zaf.jpg" alt="Personalized Wedding Invitation Cards" loading="lazy"></div>
+          <div class="bk-info">
+            <div class="bk-title">Personalized Wedding Invitation Cards</div>
+            <div class="bk-price">$49.55+</div>
+            <div class="bk-badge">Free Shipping · Envelopes Included</div>
+          </div>
+        </a>
+        <a class="bk-item" href="https://www.etsy.com/listing/4497924185/customer-service-email-templates-for" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_reply_kit'});">
+          <div class="bk-img"><img src="https://i.etsystatic.com/42595275/r/il/6fd54a/8021476411/il_1080xN.8021476411_ocx4.jpg" alt="Customer Service Email Templates" loading="lazy"></div>
+          <div class="bk-info">
+            <div class="bk-title">Customer Service Email Templates</div>
+            <div class="bk-price">$17.00</div>
+            <div class="bk-badge">Digital Download</div>
+          </div>
+        </a>
+      </div>
+      <div class="bk-widget-foot">
+        <a href="https://www.etsy.com/shop/BlueprintKit" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'shop_bk_foot_link'});">See all listings in the Blueprint Kit shop →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -241,23 +293,13 @@
     <h2 class="section-title">Bad Decisions</h2>
     <p class="section-sub">T-shirts, hoodies, accessories, and more. New designs added regularly. Some content is NSFW — you've been warned.</p>
 
-    <div class="shop-banner">
-      <div class="shop-banner-left">
-        <span class="shop-banner-badge">Official Store</span>
-        <div class="shop-banner-name">Bad Decisions</div>
-        <div class="shop-banner-tag">Bad decisions make good stories. We sell the shirts to prove it.</div>
-        <div class="shop-banner-desc">Designs across Maryland pride, camping, wrestling, pop culture, plants, and whatever else seemed like a good idea at the time. SFW collection always growing.</div>
-        <a href="https://bad-decisions.dashery.com/albums/511069-sfw" target="_blank" class="shop-banner-btn" onclick="gtag('event','click',{event_category:'shop',event_label:'bad_decisions_sfw'});">Browse SFW Collection →</a>
-      </div>
-      <div class="shop-banner-stats">
-        <div class="shop-stat"><div class="shop-stat-num">20+</div><div class="shop-stat-label">Designs</div></div>
-        <div class="shop-stat"><div class="shop-stat-num">7+</div><div class="shop-stat-label">Albums</div></div>
-        <div class="shop-stat"><div class="shop-stat-num">$22</div><div class="shop-stat-label">From</div></div>
-      </div>
-    </div>
-    <p class="shop-banner-note" style="margin-top:1rem;">Store also contains NSFW designs. <a href="https://bad-decisions.dashery.com" target="_blank">Visit the full store →</a></p>
+    <iframe src="https://bad-decisions.dashery.com/embed/v1/carousel?wmode=opaque" width="100%" height="400px" style="border:none; margin-top:1.5rem;"></iframe>
 
-    <iframe src="https://bad-decisions.dashery.com/embed/v1/carousel?wmode=opaque" width="100%" height="400px" style="border:none;"></iframe>
+    <div class="bk-widget-foot" style="background:#fff; border:0.5px solid #dde3ec; border-radius:0 0 var(--radius-lg) var(--radius-lg); border-top:none;">
+      <a href="https://bad-decisions.dashery.com/albums/511069-sfw" target="_blank" rel="noopener noreferrer" onclick="gtag('event','click',{event_category:'shop',event_label:'bad_decisions_sfw'});">Browse SFW Collection →</a>
+      <span style="color:#ccc; margin:0 0.5rem;">·</span>
+      <a href="https://bad-decisions.dashery.com" target="_blank" rel="noopener noreferrer" style="color:#889;" onclick="gtag('event','click',{event_category:'shop',event_label:'bad_decisions_full'});">Full store (NSFW included)</a>
+    </div>
   </div>
 </section>
 
