@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Service Call Audit — Chuck Ackerman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Professional customer service call auditing for small businesses. 30 years of experience. Get a written report on exactly how your team sounds — and how to improve it.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Customer Service Call Audit — Chuck Ackerman">
+<meta property="og:description" content="30 years of customer service expertise. I listen to your recorded calls and tell you exactly what's working, what isn't, and how to fix it.">
+<meta property="og:url" content="https://chuckackerman.net/call-audit">
+<meta property="og:image" content="https://chuckackerman.net/preview.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Customer Service Call Audit — Chuck Ackerman">
+<meta name="twitter:description" content="30 years of customer service expertise. I listen to your recorded calls and deliver a written report with specific, actionable improvements.">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DX84FX7ZXV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DX84FX7ZXV');
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2a4a; --navy-mid: #1a3d5c; --steel: #2e5f85; --sky: #4a8db5;
+    --accent: #e8a832; --accent-light: #f5c96a;
+    --teal: #0e7c6b; --teal-light: #12a088;
+    --text-on-dark: #e8edf2; --text-muted-dark: #94aec4;
+    --radius-md: 8px; --radius-lg: 12px;
+  }
+  body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #f8f8f6; min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* NAV */
+  .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 12px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding-bottom: 2px; }
+  .nav-links a:hover { color: var(--accent-light); }
+  .nav-links a.active { color: var(--accent-light); border-bottom: 2px solid var(--accent); }
+
+  /* PAGE HERO */
+  .page-hero { background: var(--navy); padding: 4rem 2rem 3.5rem; text-align: center; }
+  .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.6rem; }
+  .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; line-height: 1.15; }
+  .page-hero-sub { font-size: 16px; color: var(--text-muted-dark); max-width: 580px; margin: 0 auto 2rem; line-height: 1.8; }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent); color: #1a1200; font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 6px; text-decoration: none; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-outline { background: transparent; color: var(--text-on-dark); font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,0.28); transition: border-color 0.2s, color 0.2s; }
+  .btn-outline:hover { border-color: var(--accent-light); color: var(--accent-light); }
+
+  /* SECTIONS */
+  .section { padding: 4rem 2rem; }
+  .section-inner { max-width: 880px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 500; color: #0f2a4a; margin-bottom: 1rem; }
+  .section-sub { font-size: 15px; color: #556; line-height: 1.8; margin-bottom: 2rem; }
+
+  /* CREDIBILITY STRIP */
+  .cred-strip { background: var(--navy-mid); padding: 1.5rem 2rem; }
+  .cred-inner { max-width: 880px; margin: 0 auto; display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; }
+  .cred-item { text-align: center; }
+  .cred-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+  .cred-label { font-size: 11px; color: var(--text-muted-dark); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* WHAT I LOOK FOR */
+  .white-bg { background: #fff; }
+  .audit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 0.5rem; }
+  .audit-card { background: #f5f7fa; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.5rem; }
+  .audit-card-icon { font-size: 22px; margin-bottom: 0.6rem; }
+  .audit-card h3 { font-size: 15px; font-weight: 500; color: #1a2a3a; margin-bottom: 0.4rem; }
+  .audit-card p { font-size: 13.5px; color: #556; line-height: 1.7; }
+
+  /* HOW IT WORKS */
+  .steps-bg { background: #f2f4f8; }
+  .steps { display: flex; flex-direction: column; gap: 0; counter-reset: step; }
+  .step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem 0; border-bottom: 1px solid #dde3ec; }
+  .step:last-child { border-bottom: none; }
+  .step-num { background: var(--navy); color: var(--accent); font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .step-body h3 { font-size: 15px; font-weight: 500; color: #1a2a3a; margin-bottom: 4px; }
+  .step-body p { font-size: 14px; color: #556; line-height: 1.7; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 0.5rem; }
+  .price-card { background: #fff; border: 1px solid #dde3ec; border-radius: var(--radius-lg); padding: 2rem; }
+  .price-card.featured { border-color: var(--accent); border-width: 2px; position: relative; }
+  .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #1a1200; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 14px; border-radius: 20px; white-space: nowrap; }
+  .price-tier { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); font-weight: 500; margin-bottom: 0.5rem; }
+  .price-amount { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 0.25rem; }
+  .price-desc { font-size: 13px; color: #778; margin-bottom: 1.25rem; line-height: 1.5; }
+  .price-list { list-style: none; margin-bottom: 1.75rem; }
+  .price-list li { font-size: 13.5px; color: #334; padding: 5px 0; display: flex; align-items: flex-start; gap: 8px; border-bottom: 1px solid #f0f2f7; line-height: 1.55; }
+  .price-list li:last-child { border-bottom: none; }
+  .price-list li::before { content: "✓"; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .price-list li.addon::before { content: "+"; color: var(--accent); }
+  .btn-book { display: block; background: var(--navy); color: #fff; font-size: 14px; font-weight: 500; padding: 12px 24px; border-radius: 6px; text-decoration: none; text-align: center; transition: background 0.2s; }
+  .btn-book:hover { background: var(--steel); }
+  .price-card.featured .btn-book { background: var(--accent); color: #1a1200; }
+  .price-card.featured .btn-book:hover { opacity: 0.88; background: var(--accent); }
+
+  /* WHO IT'S FOR */
+  .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .who-card { background: #fff; border: 0.5px solid #dde3ec; border-radius: var(--radius-lg); padding: 1.25rem; }
+  .who-card-icon { font-size: 20px; margin-bottom: 0.5rem; }
+  .who-card h3 { font-size: 14px; font-weight: 500; color: #1a2a3a; margin-bottom: 0.3rem; }
+  .who-card p { font-size: 12.5px; color: #778; line-height: 1.6; }
+
+  /* ABOUT / CREDIBILITY */
+  .about-banner { background: var(--navy-mid); border-radius: var(--radius-lg); padding: 2rem 2.5rem; display: flex; gap: 2rem; align-items: flex-start; }
+  .about-banner-text { flex: 1; }
+  .about-banner-text h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .about-banner-text p { font-size: 14px; color: var(--text-muted-dark); line-height: 1.8; margin-bottom: 0.6rem; }
+  .about-banner-text p:last-child { margin-bottom: 0; }
+
+  /* FAQ */
+  .faq { display: flex; flex-direction: column; gap: 0; }
+  .faq-item { border-bottom: 1px solid #e0e4ec; padding: 1.25rem 0; }
+  .faq-item:first-child { border-top: 1px solid #e0e4ec; }
+  .faq-q { font-size: 15px; font-weight: 500; color: #1a2a3a; margin-bottom: 0.5rem; }
+  .faq-a { font-size: 14px; color: #556; line-height: 1.75; }
+
+  /* CTA BAND */
+  .cta-band { background: var(--navy); padding: 4rem 2rem; text-align: center; }
+  .cta-band h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text-on-dark); margin-bottom: 0.75rem; }
+  .cta-band p { font-size: 15px; color: var(--text-muted-dark); max-width: 520px; margin: 0 auto 2rem; line-height: 1.75; }
+  .cta-email { font-size: 14px; color: var(--accent-light); margin-top: 1.25rem; }
+  .cta-email a { color: var(--accent); text-decoration: none; font-weight: 500; border-bottom: 1px solid rgba(232,168,50,0.4); }
+  .cta-email a:hover { border-color: var(--accent); }
+
+  /* DIVIDER */
+  .section-divider { border: none; border-top: 1px solid #e0e4ec; margin: 0; }
+
+  /* FOOTER */
+  .footer { background: #0a1f38; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
+  .footer span { font-size: 12px; color: #667; }
+  .footer a { font-size: 12px; color: #667; text-decoration: none; }
+  .footer a:hover { color: var(--accent-light); }
+
+  /* RESPONSIVE */
+  @media (max-width: 660px) {
+    .page-hero h1 { font-size: 30px; }
+    .audit-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .about-banner { flex-direction: column; }
+    .cred-inner { gap: 1.5rem; }
+    .nav-links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">Chuck Ackerman</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="call-audit.html" class="active">Call Audit</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <p class="page-hero-label">Professional Service</p>
+  <h1>Customer Service<br>Call Audit</h1>
+  <p class="page-hero-sub">I listen to your recorded customer service calls and deliver a written report on exactly what's working, what's costing you customers, and how to fix it — backed by 30 years of real-world experience.</p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary" onclick="gtag('event','click',{event_category:'call_audit',event_label:'hero_cta'});">See Pricing & Book</a>
+    <a href="#how-it-works" class="btn-outline">How It Works</a>
+  </div>
+</section>
+
+<!-- CREDIBILITY STRIP -->
+<div class="cred-strip">
+  <div class="cred-inner">
+    <div class="cred-item">
+      <div class="cred-num">30</div>
+      <div class="cred-label">Years of Experience</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">Phone</div>
+      <div class="cred-label">Primary Focus</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">7 Days</div>
+      <div class="cred-label">Delivery Time</div>
+    </div>
+    <div class="cred-item">
+      <div class="cred-num">Written</div>
+      <div class="cred-label">Detailed Report</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT I LOOK FOR -->
+<section class="section white-bg" id="what-i-do">
+  <div class="section-inner">
+    <p class="section-label">The Audit</p>
+    <h2 class="section-title">What I Listen For</h2>
+    <p class="section-sub">Most business owners have never heard how their team actually sounds on the phone. These are the six areas I evaluate in every audit.</p>
+    <div class="audit-grid">
+      <div class="audit-card">
+        <div class="audit-card-icon">📞</div>
+        <h3>Call Opening & Closing</h3>
+        <p>Is every call opened and closed consistently? Does your team establish professionalism and warmth in the first 10 seconds?</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-icon">🎯</div>
+        <h3>Brand Consistency</h3>
+        <p>Does your team sound like one unified company, or does tone and language vary wildly from person to person?</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-icon">🔥</div>
+        <h3>Handling Difficult Situations</h3>
+        <p>How does your team handle complaints, frustrated callers, or requests they can't fulfill? This is where most companies lose customers.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-icon">🤝</div>
+        <h3>Trust & Tone</h3>
+        <p>Does your team sound confident and trustworthy, or rushed and uncertain? Tone alone can determine whether a caller becomes a customer.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-icon">💬</div>
+        <h3>Language & Scripting Gaps</h3>
+        <p>Are there common situations where your team doesn't know what to say? I identify them and provide specific language to fill those gaps.</p>
+      </div>
+      <div class="audit-card">
+        <div class="audit-card-icon">⭐</div>
+        <h3>Missed Opportunities</h3>
+        <p>Where are moments to build loyalty, upsell naturally, or leave callers with a lasting positive impression being overlooked?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- HOW IT WORKS -->
+<section class="section steps-bg" id="how-it-works">
+  <div class="section-inner">
+    <p class="section-label">The Process</p>
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Simple, straightforward, and entirely remote. No disruption to your business.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>We connect</h3>
+          <p>Reach out via the contact form or email below. I'll confirm your business records calls and briefly explain what I'll need from you. No commitment yet — just a quick conversation to make sure it's a good fit.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>You send the recordings</h3>
+          <p>Share a batch of recorded calls via a secure file transfer (Google Drive, Dropbox, or similar). I work with 10 calls for the Starter Audit, 20 for the Full Audit. Any format works — MP3, WAV, M4A, or platform exports.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>I listen and evaluate</h3>
+          <p>I review every call carefully, taking detailed notes across all six evaluation areas. I'm listening for patterns — not just individual calls — so the feedback reflects your team's actual habits, not isolated moments.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>You receive your written report</h3>
+          <p>Within 7 business days, you receive a clear, organized written report covering what's working, what needs attention, and specific language recommendations your team can use right away. No fluff — just practical feedback.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>We debrief (Full Audit only)</h3>
+          <p>Full Audit clients receive a 30-minute video or phone call where I walk through the report findings, answer your questions, and discuss how to implement the changes with your team.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- WHO IT'S FOR -->
+<section class="section white-bg">
+  <div class="section-inner">
+    <p class="section-label">Who This Is For</p>
+    <h2 class="section-title">Best For Businesses That Already Record Calls</h2>
+    <p class="section-sub">This service is designed for businesses where phone communication is central to the customer experience — and where call recording is already in place for compliance or quality purposes.</p>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-card-icon">🏥</div>
+        <h3>Medical & Dental Offices</h3>
+        <p>Front desk tone and consistency directly impacts patient trust and retention.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">🏠</div>
+        <h3>Real Estate Brokerages</h3>
+        <p>Agent call quality varies significantly. Consistent professionalism wins more listings.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">🛡️</div>
+        <h3>Insurance Agencies</h3>
+        <p>Complex calls, high stakes. Scripting gaps cost clients and renewals.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">💅</div>
+        <h3>Med Spas & Salons</h3>
+        <p>Premium services demand premium phone presence. First impressions happen on the phone.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">🔧</div>
+        <h3>Service & Trades Businesses</h3>
+        <p>HVAC, plumbing, auto repair — customers who feel respected on the phone come back.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-icon">🏢</div>
+        <h3>Franchise Locations</h3>
+        <p>Corporate mandates recording but rarely provides local coaching. I fill that gap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PRICING -->
+<section class="section steps-bg" id="pricing">
+  <div class="section-inner">
+    <p class="section-label">Investment</p>
+    <h2 class="section-title">Choose Your Audit</h2>
+    <p class="section-sub">Both options include a detailed written report delivered within the timeframe below. No hidden fees, no ongoing commitment.</p>
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Starter Audit</div>
+        <div class="price-amount">$297</div>
+        <div class="price-desc">Best for smaller teams or a focused snapshot of call quality.</div>
+        <ul class="price-list">
+          <li>Review of 10 recorded calls</li>
+          <li>Written evaluation report</li>
+          <li>6-area assessment framework</li>
+          <li>Specific language recommendations</li>
+          <li>Delivered within 5 business days</li>
+        </ul>
+        <a href="contact.html?service=starter-audit" class="btn-book" onclick="gtag('event','click',{event_category:'call_audit',event_label:'book_starter'});">Get Started — $297</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-badge">Most Popular</div>
+        <div class="price-tier">Full Audit</div>
+        <div class="price-amount">$497</div>
+        <div class="price-desc">The complete picture. Best for teams of 2+ or businesses with varied call types.</div>
+        <ul class="price-list">
+          <li>Review of 20 recorded calls</li>
+          <li>Comprehensive written report</li>
+          <li>6-area assessment framework</li>
+          <li>Specific language recommendations</li>
+          <li>30-minute debrief call with owner</li>
+          <li>Delivered within 7 business days</li>
+          <li class="addon">Add-on: Reply Kit templates +$47</li>
+        </ul>
+        <a href="contact.html?service=full-audit" class="btn-book" onclick="gtag('event','click',{event_category:'call_audit',event_label:'book_full'});">Get Started — $497</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ABOUT -->
+<section class="section white-bg">
+  <div class="section-inner">
+    <p class="section-label">Why Work With Me</p>
+    <h2 class="section-title">30 Years. Real Experience. No Fluff.</h2>
+    <div class="about-banner">
+      <div class="about-banner-text">
+        <h3>Chuck Ackerman</h3>
+        <p>I've spent 30 years in customer service — primarily on the phone — handling everything from routine inquiries to high-stakes, emotionally charged situations. What I've learned is that the difference between a customer who stays and one who leaves often comes down to a single phrase, a tone of voice, or a moment where a team member didn't know what to say.</p>
+        <p>Customer service is so wired into how I think that I can evaluate a call the way a musician hears a wrong note — instinctively, immediately, and specifically. I'm not reading from a checklist. I'm telling you what I actually hear, and exactly what to do about it.</p>
+        <p>My goal is to give you the most honest, useful feedback you've ever received about how your team sounds — and practical tools to make it better right away.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- FAQ -->
+<section class="section steps-bg">
+  <div class="section-inner">
+    <p class="section-label">Questions</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <p class="faq-q">Does my business need to already record calls?</p>
+        <p class="faq-a">Yes — this service is designed for businesses that already have call recordings available. Many businesses record calls for compliance, quality assurance, or training purposes. If you're not currently recording calls and would like to start, I'm happy to point you toward some simple, low-cost options.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do I get you the recordings?</p>
+        <p class="faq-a">You can share them via a secure cloud link — Google Drive, Dropbox, OneDrive, or any similar service. Any common audio format works (MP3, WAV, M4A). I'll provide a simple checklist once we confirm your audit.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What does the written report actually look like?</p>
+        <p class="faq-a">It's a clear, organized document — not a form with scores. It walks through each evaluation area, describes patterns I observed across the calls, highlights what's genuinely working, identifies what to improve, and gives you specific language and phrases your team can start using right away. It's designed to be shared directly with your staff.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What industries do you work with?</p>
+        <p class="faq-a">Any business where phone calls are central to the customer experience. I have the most experience with service-based businesses — medical offices, real estate, insurance, trades, and similar. If you're unsure whether your business is a good fit, just reach out and ask.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Is there a contract?</p>
+        <p class="faq-a">Yes — I use a simple one-page service agreement that protects both of us. It covers scope of work, payment terms, confidentiality of your recordings, and deliverable timeline. I'll send it before we begin. No legal surprises.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do I pay?</p>
+        <p class="faq-a">Payment is collected in full before I begin the audit. I accept all major credit cards and PayPal. I'll send an invoice once we've confirmed the scope and you've signed the service agreement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Ready to Hear What Your Customers Hear?</h2>
+  <p>Most business owners are surprised by what an audit reveals — not because things are terrible, but because small, fixable habits have been costing them customers for years without anyone ever pointing it out.</p>
+  <div class="hero-actions">
+    <a href="contact.html?service=full-audit" class="btn-primary" onclick="gtag('event','click',{event_category:'call_audit',event_label:'footer_cta'});">Book Your Audit</a>
+    <a href="contact.html" class="btn-outline">Ask a Question First</a>
+  </div>
+  <p class="cta-email">Or email directly: <a href="mailto:chuck@chuckackerman.net">chuck@chuckackerman.net</a></p>
+</section>
+
+<footer class="footer">
+  <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Customer Service Call Audit &nbsp;&middot;&nbsp; Baltimore, MD</span>
+  <a href="index.html">← Back to main site</a>
+</footer>
+
+</body>
+</html>

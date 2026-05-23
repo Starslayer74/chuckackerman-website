@@ -124,6 +124,7 @@
     <a href="books.html">Books</a>
     <a href="blog.html">Blog</a>
     <a href="shop.html">Shop</a>
+    <a href="call-audit.html">Call Audit</a>
     <a href="contact.html" class="active">Contact</a>
   </div>
 </nav>
@@ -140,6 +141,14 @@
 
     <div class="reasons-col">
       <h2>Reasons to reach out</h2>
+
+      <div class="reason-item">
+        <div class="reason-icon">📞</div>
+        <div class="reason-text">
+          <h3>Call Audit service</h3>
+          <p>Interested in having Chuck review your team's recorded calls and deliver a written improvement report? Use this form to ask questions or book an audit. You can also go directly to the <a href="call-audit.html" style="color: var(--teal); font-weight: 500;">Call Audit page</a>.</p>
+        </div>
+      </div>
 
       <div class="reason-item">
         <div class="reason-icon">💼</div>
@@ -191,6 +200,7 @@
           <label for="reason">Reason for contact</label>
           <select id="reason" name="reason" required>
             <option value="" disabled selected>Select a reason...</option>
+            <option value="Call Audit">Call Audit inquiry</option>
             <option value="Professional Inquiry">Professional &amp; business inquiry</option>
             <option value="Book Question">Question about a book</option>
             <option value="Feedback">Feedback</option>
@@ -225,6 +235,18 @@
 <script>
   const form = document.getElementById('contact-form');
   const success = document.getElementById('success-msg');
+
+  // Auto-select dropdown from URL param (e.g. ?service=call-audit)
+  const params = new URLSearchParams(window.location.search);
+  const svc = params.get('service');
+  if (svc) {
+    const map = { 'call-audit': 'Call Audit', 'starter-audit': 'Call Audit', 'full-audit': 'Call Audit' };
+    const val = map[svc];
+    if (val) {
+      const sel = document.getElementById('reason');
+      if (sel) sel.value = val;
+    }
+  }
 
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
