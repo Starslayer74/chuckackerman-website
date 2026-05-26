@@ -34,7 +34,7 @@
   body { font-family: 'DM Sans', sans-serif; color: #1a1a2e; background: #f8f8f6; min-height: 100vh; display: flex; flex-direction: column; }
 
   /* NAV */
-  .nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
+  .nav { background-color: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 58px; position: sticky; top: 0; z-index: 100; }
   .nav-brand { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text-on-dark); letter-spacing: 0.02em; text-decoration: none; }
   .nav-links { display: flex; gap: 28px; }
   .nav-links a { font-size: 12px; color: var(--text-muted-dark); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.2s; padding-bottom: 2px; }
@@ -42,7 +42,7 @@
   .nav-links a.active { color: var(--accent-light); border-bottom: 2px solid var(--accent); }
 
   /* PAGE HERO */
-  .page-hero { background: var(--navy); padding: 3.5rem 2rem; text-align: center; }
+  .page-hero { background-color: var(--navy); padding: 3.5rem 2rem; text-align: center; }
   .page-hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-light); font-weight: 500; margin-bottom: 0.5rem; }
   .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: var(--text-on-dark); margin-bottom: 0.75rem; }
   .page-hero p { font-size: 15px; color: var(--text-muted-dark); max-width: 560px; margin: 0 auto; line-height: 1.75; }
@@ -90,7 +90,7 @@
   .affiliate-note { margin-top: 1.5rem; font-size: 12px; color: #889; text-align: center; line-height: 1.6; }
 
   /* FOOTER */
-  .footer { background: #0a1e35; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 2rem; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
+  .footer { background-color: #0a1e35; border-top: 1px solid rgba(255,255,255,0.06); padding: 1.75rem 2rem; font-size: 12px; color: #5a7a99; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-top: auto; }
   .footer a { color: #5a7a99; text-decoration: none; border-bottom: 1px dashed #3a5a79; padding-bottom: 1px; transition: color 0.2s; }
   .footer a:hover { color: var(--accent-light); }
 
@@ -100,11 +100,62 @@
     .featured-cover img { width: 150px; margin: 0 auto; display: block; }
     .nav-links { display: none; }
   }
+
+  /* ── WEBGL GRADIENT (nav/hero/footer) ── */
+  .ca-gradient-host {
+    position: relative;
+    overflow: hidden;
+  }
+  .ca-gradient-host > * { position: relative; z-index: 1; }
+  .ca-gc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.82; display: block; }
+
+  /* ── DARK TOAST ── */
+  #ca-toast-container {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 9999;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-end; pointer-events: none;
+  }
+  .ca-toast {
+    pointer-events: auto;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    background: #0f2a4a; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 12px 14px;
+    box-shadow: 0 4px 28px rgba(0,0,0,0.5);
+    min-width: 280px; max-width: 340px;
+    animation: ca-toast-in 0.3s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .ca-toast.ca-toast-out { animation: ca-toast-out 0.25s ease-in forwards; }
+  .ca-toast-body { display: flex; align-items: flex-start; gap: 10px; flex: 1; }
+  .ca-toast-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .ca-toast-title { font-size: 13px; font-weight: 600; color: #e8edf2; margin-bottom: 2px; }
+  .ca-toast-msg { font-size: 12px; color: #94aec4; line-height: 1.5; }
+  .ca-toast-close { background: none; border: none; cursor: pointer; color: #5a7a99; font-size: 18px; padding: 0; line-height: 1; flex-shrink: 0; transition: color 0.15s; }
+  .ca-toast-close:hover { color: #e8edf2; }
+  .ca-toast.success { border-left: 3px solid #0e7c6b; }
+  .ca-toast.error   { border-left: 3px solid #e74c3c; }
+  @keyframes ca-toast-in  { from { opacity:0; transform: translateY(10px) scale(0.97); } to { opacity:1; transform: translateY(0) scale(1); } }
+  @keyframes ca-toast-out { from { opacity:1; transform: translateY(0) scale(1); }        to { opacity:0; transform: translateY(6px) scale(0.97); } }
 </style>
 </head>
 <body>
+<div id="ca-toast-container"></div>
+<script>
 
-<nav class="nav">
+function caToast(title,msg,type,duration){
+  type=type||'info';duration=duration||4000;
+  var icons={success:'✅',error:'❌',info:'ℹ️'};
+  var c=document.getElementById('ca-toast-container');
+  var t=document.createElement('div');
+  t.className='ca-toast '+type;
+  t.innerHTML='<div class="ca-toast-body"><span class="ca-toast-icon">'+icons[type]+'</span><div><div class="ca-toast-title">'+title+'</div><div class="ca-toast-msg">'+msg+'</div></div></div><button class="ca-toast-close" aria-label="Dismiss">&times;</button>';
+  c.appendChild(t);
+  function dismiss(){t.classList.add('ca-toast-out');setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},280);}
+  t.querySelector('.ca-toast-close').addEventListener('click',dismiss);
+  setTimeout(dismiss,duration);
+}
+
+</script>
+
+<nav class="nav ca-gradient-host">
   <a href="index.html" class="nav-brand">Chuck Ackerman</a>
   <div class="nav-links">
     <a href="index.html#about">About</a>
@@ -117,7 +168,7 @@
   </div>
 </nav>
 
-<div class="page-hero">
+<div class=" ca-gradient-host page-hero">
   <p class="page-hero-label">Published works</p>
   <h1>Books by Chuck Ackerman</h1>
   <p>Nonfiction as Chuck Ackerman. Fiction as Lars C. Hallene. Two names, one author, zero regrets.</p>
@@ -247,9 +298,76 @@
   </div>
 </section>
 
-<footer class="footer">
+<footer class="footer ca-gradient-host">
   <span>&copy; 2026 Chuck Ackerman &nbsp;&middot;&nbsp; Author &nbsp;&middot;&nbsp; Baltimore, MD</span>
 </footer>
+
+
+<script>
+// ── WEBGL ANIMATED GRADIENT ──
+(function() {
+  var VERT = '#version 300 es\nin vec4 a_position;\nvoid main(){gl_Position=a_position;}';
+  var FRAG = '#version 300 es\nprecision highp float;\nuniform float u_time,u_pixelRatio,u_scale,u_rotation;\nuniform vec2 u_resolution;\nuniform vec4 u_color1,u_color2,u_color3;\nuniform float u_proportion,u_softness,u_shape,u_shapeScale,u_distortion,u_swirl,u_swirlIterations;\nout vec4 fragColor;\n#define TWO_PI 6.28318530718\n#define PI 3.14159265358979323846\nvec2 rot(vec2 uv,float th){return mat2(cos(th),sin(th),-sin(th),cos(th))*uv;}\nfloat rnd(vec2 st){return fract(sin(dot(st.xy,vec2(12.9898,78.233)))*43758.5453123);}\nfloat ns(vec2 st){vec2 i=floor(st);vec2 f=fract(st);float a=rnd(i),b=rnd(i+vec2(1,0)),c=rnd(i+vec2(0,1)),d=rnd(i+vec2(1,1));vec2 u=f*f*(3.0-2.0*f);return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);}\nvec4 blend(vec4 c1,vec4 c2,vec4 c3,float m,float ew,float eb){float r1=smoothstep(.0+.35*ew,.7-.35*ew+.5*eb,m);float r2=smoothstep(.3+.35*ew,1.-.35*ew+eb,m);vec3 m2=mix(c1.rgb*c1.a,c2.rgb*c2.a,r1);float o2=mix(c1.a,c2.a,r1);return vec4(mix(m2,c3.rgb*c3.a,r2),mix(o2,c3.a,r2));}\nvoid main(){vec2 uv=gl_FragCoord.xy/u_resolution.xy;float t=.5*u_time;float nsc=.0005+.006*u_scale;uv-=.5;uv*=(nsc*u_resolution);uv=rot(uv,u_rotation*.5*PI);uv/=u_pixelRatio;uv+=.5;float n1=ns(uv*1.+t);float n2=ns(uv*2.-t);float angle=n1*TWO_PI;uv.x+=4.*u_distortion*n2*cos(angle);uv.y+=4.*u_distortion*n2*sin(angle);float iters=ceil(clamp(u_swirlIterations,1.,30.));for(float i=1.;i<=iters;i++){uv.x+=clamp(u_swirl,0.,2.)/i*cos(t+i*1.5*uv.y);uv.y+=clamp(u_swirl,0.,2.)/i*cos(t+i*1.*uv.x);}float proportion=clamp(u_proportion,0.,1.);vec2 cuv=uv*(.5+3.5*u_shapeScale);float shape=.5+.5*sin(cuv.x)*cos(cuv.y);float mixer=shape+.48*sign(proportion-.5)*pow(abs(proportion-.5),.5);vec4 col=blend(u_color1,u_color2,u_color3,mixer,1.-clamp(u_softness,0.,1.),.01+.01*u_scale);fragColor=vec4(col.rgb,col.a);}';
+
+  // Params tuned to site palette: navy→steel→light
+  var P={color1:[0.059,0.165,0.290,1.0],color2:[0.180,0.373,0.518,1.0],color3:[0.910,0.929,0.949,1.0],rotation:-50,proportion:0.10,scale:0.01,speed:18,distortion:0,swirl:0.50,swirlIterations:16,softness:0.47,offset:-299,shapeSize:0.45};
+
+  function mkCanvas(host) {
+    var gl=null;
+    var canvas=document.createElement('canvas');
+    canvas.className='ca-gc';
+    host.insertBefore(canvas,host.firstChild);
+    try { gl=canvas.getContext('webgl2',{premultipliedAlpha:true,alpha:true,antialias:true}); } catch(e){}
+    if(!gl){canvas.style.display='none';return;}
+
+    function cs(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+    var prog=gl.createProgram();
+    gl.attachShader(prog,cs(gl.VERTEX_SHADER,VERT));
+    gl.attachShader(prog,cs(gl.FRAGMENT_SHADER,FRAG));
+    gl.linkProgram(prog);gl.useProgram(prog);
+    var buf=gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
+    var pos=gl.getAttribLocation(prog,'a_position');
+    gl.enableVertexAttribArray(pos);gl.vertexAttribPointer(pos,2,gl.FLOAT,false,0,0);
+    var U={};
+    ['u_time','u_pixelRatio','u_scale','u_rotation','u_resolution','u_color1','u_color2','u_color3','u_proportion','u_softness','u_shape','u_shapeScale','u_distortion','u_swirl','u_swirlIterations'].forEach(function(n){U[n]=gl.getUniformLocation(prog,n);});
+
+    function resize(){var w=host.clientWidth,h=host.clientHeight,dpr=window.devicePixelRatio||1;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';gl.viewport(0,0,canvas.width,canvas.height);}
+    resize();
+    var ro=new ResizeObserver(resize);ro.observe(host);
+
+    var start=null;
+    function frame(ts){
+      if(!start)start=ts;
+      var elapsed=(ts-start)/1000;
+      var t=elapsed*(P.speed/100*5)+P.offset*0.01;
+      gl.uniform1f(U.u_time,t);
+      gl.uniform2f(U.u_resolution,canvas.width,canvas.height);
+      gl.uniform1f(U.u_pixelRatio,window.devicePixelRatio||1);
+      gl.uniform1f(U.u_scale,P.scale);
+      gl.uniform1f(U.u_rotation,P.rotation*Math.PI/180);
+      gl.uniform4fv(U.u_color1,P.color1);
+      gl.uniform4fv(U.u_color2,P.color2);
+      gl.uniform4fv(U.u_color3,P.color3);
+      gl.uniform1f(U.u_proportion,P.proportion);
+      gl.uniform1f(U.u_softness,P.softness);
+      gl.uniform1f(U.u_shape,0.0);
+      gl.uniform1f(U.u_shapeScale,P.shapeSize);
+      gl.uniform1f(U.u_distortion,P.distortion/50);
+      gl.uniform1f(U.u_swirl,P.swirl);
+      gl.uniform1f(U.u_swirlIterations,P.swirlIterations);
+      gl.drawArrays(gl.TRIANGLES,0,6);
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    document.querySelectorAll('.ca-gradient-host').forEach(mkCanvas);
+  });
+})();
+</script>
 
 </body>
 </html>
