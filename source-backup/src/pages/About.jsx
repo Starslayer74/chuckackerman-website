@@ -4,8 +4,8 @@ import React from 'react';
 export default function About() {
   return (
     <div className="px-6 py-20 max-w-4xl mx-auto space-y-24">
-      <section className="glass-card p-12 md:p-16">
-        <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight">Professional problem-solver.<br/><span className="text-amber-400">Accidental historian.</span></h2>
+      <section className="glass-card p-8 md:p-16">
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight break-words">Professional problem-solver.<br/><span className="text-amber-400">Accidental historian.</span></h2>
         <div className="space-y-8 text-slate-300 leading-relaxed text-lg font-light">
           <p>I've spent 20+ years in technical support and customer service, helping people navigate complex systems and solving problems for users who are often frustrated before they ever reach out. I genuinely enjoy that challenge. Whether it's troubleshooting platform access, training a new user, or untangling a process that stopped making sense somewhere along the way — that's where I do my best work.</p>
           <p>My background spans enterprise SaaS platforms, identity and access management, mobile application support, and high-volume customer care environments. I've been fully remote since 2019 and thrive in distributed team settings.</p>
@@ -26,7 +26,7 @@ export default function About() {
         <div className="space-y-8 relative">
           <div className="absolute left-6 top-6 bottom-6 w-px bg-amber-500/30 hidden md:block"></div>
           
-          <div className="glass-card p-10 md:ml-12 relative">
+          <div className="glass-card p-6 md:p-10 md:ml-12 relative">
             <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-amber-500 border-4 border-slate-900 hidden md:block"></div>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
               <h4 className="text-2xl font-bold text-white">Web Application Support Specialist</h4>
@@ -36,7 +36,7 @@ export default function About() {
             <p className="text-slate-300 text-lg font-light leading-relaxed">Platform troubleshooting, user provisioning, access management, and monthly training webinars for internal teams and enterprise clients via Salesforce, ServiceNow, and Five9.</p>
           </div>
           
-          <div className="glass-card p-10 md:ml-12 relative opacity-80 hover:opacity-100 transition-opacity">
+          <div className="glass-card p-6 md:p-10 md:ml-12 relative opacity-80 hover:opacity-100 transition-opacity">
             <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-slate-700 border-4 border-slate-900 hidden md:block"></div>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
               <h4 className="text-2xl font-bold text-white">Estimates Auditor & Driver Consultant</h4>

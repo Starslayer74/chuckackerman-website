@@ -163,14 +163,13 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8">
           {shopItems.slice(0, 2).map((item, index) => (
             <Link to={item.link} key={index} className="glass-card p-10 flex flex-col items-center text-center group hover:bg-slate-800/80 overflow-hidden">
-              <div className="w-full h-48 mb-8 overflow-hidden rounded-xl bg-slate-900 border border-white/5 relative">
+              <div className="w-full aspect-[1024/292] mb-8 overflow-hidden rounded-xl bg-slate-900 border border-white/5 relative">
                 {item.image ? (
-                   <img src={item.image} alt={item.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" />
+                   <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top transform group-hover:scale-110 transition-transform duration-700 opacity-80 group-hover:opacity-100" />
                 ) : (
                    <div className="w-full h-full flex items-center justify-center text-slate-700 font-serif text-4xl">?</div>
                 )}
               </div>
-              <h3 className="font-serif font-bold text-white text-3xl group-hover:text-amber-400 transition-colors mb-4">{item.title}</h3>
               <p className="text-slate-300 text-lg mb-8 flex-grow">{item.org}</p>
               <span className="text-amber-500 font-bold uppercase tracking-widest text-sm inline-flex items-center gap-2 mt-auto">
                 View More <span className="transform group-hover:translate-x-1 transition-transform">&rarr;</span>

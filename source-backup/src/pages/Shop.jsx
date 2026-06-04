@@ -44,22 +44,23 @@ export default function Shop() {
             <p className="text-amber-500 font-bold">$17.00</p>
         </a>
         </div>
+        
+        {/* Widget-style "Shop All" link for Blueprint Kit */}
+        <div className="mt-12 text-center">
+          <a href="https://blueprintkit.etsy.com" target="_blank" rel="noreferrer" className="text-white font-bold hover:text-slate-200 transition-colors underline underline-offset-4 text-2xl tracking-wide" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            Shop All Blueprints
+          </a>
+        </div>
       </section>
 
       <section id="bad-decisions">
-        <header className="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
-          <div>
-            <h2 className="text-4xl font-serif font-bold text-white mb-4">Bad Decisions Merch</h2>
-            <p className="text-slate-400 text-lg font-light">Viral t-shirts, apparel & accessories</p>
-          </div>
-          <div className="flex gap-4">
-            <a href="https://bad-decisions.dashery.com/albums/511069-sfw" target="_blank" rel="noreferrer" className="btn-outline">SFW Collection</a>
-            <a href="https://bad-decisions.dashery.com" target="_blank" rel="noreferrer" className="btn-primary">Full Store (NSFW included)</a>
-          </div>
+        <header className="mb-12 text-center">
+          <h2 className="text-4xl font-serif font-bold text-white mb-4">Bad Decisions Merch</h2>
+          <p className="text-slate-400 text-lg font-light">Viral t-shirts, apparel & accessories</p>
         </header>
         <div className="glass-card overflow-hidden p-2">
-          <div className="rounded-2xl overflow-hidden bg-black relative">
-            <iframe src="https://bad-decisions.dashery.com/embed/v1/carousel?wmode=opaque" width="100%" height="500px" style={{border:'none', display:'block'}} title="Bad Decisions Carousel"></iframe>
+          <div className="rounded-2xl overflow-hidden bg-slate-900 relative">
+            <iframe src="https://bad-decisions.dashery.com/embed/v1/carousel?wmode=opaque" width="100%" height="400px" style={{border:'none', display:'block'}} title="Bad Decisions Carousel"></iframe>
           </div>
         </div>
       </section>
