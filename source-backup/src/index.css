@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased selection:bg-amber-500 selection:text-white relative overflow-x-hidden;
+    /* Animated Gradient Mesh Background */
+    background: radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(232, 168, 50, 0.1), transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(15, 42, 74, 0.5), transparent 40%);
+    background-color: #020617; /* slate-950 */
+    background-attachment: fixed;
+    animation: pulseGlow 15s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes pulseGlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+@layer components {
+  /* Premium Glassmorphism Card */
+  .glass-card {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply bg-slate-900/60 border-white/20 shadow-amber-900/20 shadow-2xl transform -translate-y-1;
+  }
+
+  /* Premium Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold rounded-xl shadow-lg shadow-amber-900/50 hover:shadow-amber-900/80 hover:from-amber-400 hover:to-amber-600 transition-all duration-300 transform hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-amber-500/50 text-amber-400 font-bold rounded-xl hover:bg-amber-500/10 hover:border-amber-400 transition-all duration-300 transform hover:-translate-y-0.5;
+  }
+
+  /* Typography */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400;
+  }
+  
+  .text-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600;
+  }
+
+  /* Blog Content overrides */
+  .prose img { 
+    @apply block mx-auto shadow-2xl rounded-2xl border border-white/10; 
+  }
+  .prose {
+    @apply text-slate-300 max-w-none;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-white font-serif tracking-tight;
+  }
+  .prose a {
+    @apply text-amber-400 no-underline border-b border-amber-500/30 hover:border-amber-400 transition-colors;
+  }
+  .prose strong {
+    @apply text-white font-bold;
+  }
+
+  /* ── WEBGL GRADIENT (nav/hero/footer) ── */
+  .ca-gradient-host {
+    position: relative;
+    overflow: hidden;
+  }
+  .ca-gradient-host > * { position: relative; z-index: 1; }
+  .ca-gc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.82; display: block; }
+}
