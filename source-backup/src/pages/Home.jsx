@@ -57,11 +57,11 @@ export default function Home() {
     <div className="px-6 max-w-7xl mx-auto space-y-32 mb-32">
       
       <AnimatedGradient className="pt-12 pb-12 text-center relative rounded-3xl overflow-hidden mt-8 shadow-2xl border border-white/10">
-        <div className="relative z-10 flex flex-col items-center">
+        <div className="relative z-10 flex flex-col items-center px-4 md:px-8">
           <p className="text-sm font-bold tracking-[0.3em] text-amber-400 uppercase mb-8 drop-shadow-md">
             Customer Service and Technical Support Professional &bull; Author &bull; Designer
           </p>
-          <h1 className="text-6xl md:text-8xl font-serif font-bold text-white mb-8 tracking-tight">
+          <h1 className="text-5xl md:text-8xl font-serif font-bold text-white mb-8 tracking-tight">
             <span id="hero-typing"></span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto mb-12 drop-shadow-sm font-light">
