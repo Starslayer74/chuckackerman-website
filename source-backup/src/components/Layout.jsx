@@ -28,7 +28,8 @@ export default function Layout() {
         </nav>
       </AnimatedGradient>
 
-      {/* Main Content Area */}
+      <div className="overflow-x-hidden flex-grow flex flex-col w-full">
+        {/* Main Content Area */}
         <main className="flex-grow w-full relative z-10">
           <Outlet />
         </main>
@@ -55,6 +56,7 @@ export default function Layout() {
             </a>
           </footer>
         </AnimatedGradient>
+      </div>
     </div>
   );
 }
