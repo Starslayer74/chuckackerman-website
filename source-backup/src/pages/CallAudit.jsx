@@ -4,11 +4,9 @@ import { callAuditTiers } from '../data';
 
 export default function CallAudit() {
   return (
-    <div className="px-6 py-20 max-w-6xl mx-auto">
-      <div className="text-center space-y-8 mb-24 relative">
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-600/20 blur-[120px] rounded-full pointer-events-none"></div>
-        <span className="text-7xl block mb-8 relative z-10">📞</span>
-        <h2 className="text-5xl md:text-6xl font-serif font-bold text-white relative z-10 tracking-tight">Customer Service Call Audit</h2>
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-6xl mx-auto">
+      <div className="text-center space-y-8 mb-12 md:mb-24 relative">
+        <h2 className="text-5xl font-serif font-bold text-white relative z-10 tracking-tight">Customer Service Call Audit</h2>
         <p className="text-xl md:text-2xl text-slate-300 leading-relaxed max-w-3xl mx-auto font-light relative z-10">
           I listen to your recorded customer service calls and deliver a written report on exactly what's working, what's costing you customers, and how to fix it — backed by 30 years of real-world experience.
         </p>
@@ -19,7 +17,7 @@ export default function CallAudit() {
         <p className="text-slate-400 mt-4">Both options include a detailed written report. No hidden fees.</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-24 items-start">
+      <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto items-start">
         {callAuditTiers.map((tier, index) => (
           <div key={index} className={`glass-card p-10 flex flex-col ${tier.popular ? 'border-amber-500/50 shadow-amber-900/30 shadow-2xl scale-105 z-10 relative bg-slate-900/80' : 'bg-slate-900/40 mt-4'}`}>
             {tier.popular && (

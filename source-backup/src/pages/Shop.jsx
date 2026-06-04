@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Shop() {
   return (
-    <div className="px-6 py-20 max-w-7xl mx-auto space-y-32">
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-7xl mx-auto space-y-20 md:space-y-32">
       <section id="blueprint-kit">
         <header className="mb-16 text-center">
           <h2 className="text-5xl font-serif font-bold text-white mb-6">Blueprint Kit</h2>
@@ -53,7 +53,7 @@ export default function Shop() {
         </div>
       </section>
 
-      <section id="bad-decisions">
+      <section id="bad-decisions" className="-mb-8 md:-mb-16">
         <header className="mb-12 text-center">
           <h2 className="text-4xl font-serif font-bold text-white mb-4">Bad Decisions Merch</h2>
           <p className="text-slate-400 text-lg font-light">Viral t-shirts, apparel & accessories</p>

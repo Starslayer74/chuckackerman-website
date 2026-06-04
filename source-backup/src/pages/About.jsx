@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function About() {
   return (
-    <div className="px-6 py-20 max-w-4xl mx-auto space-y-24">
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-4xl mx-auto space-y-16 md:space-y-24">
       <section className="glass-card p-8 md:p-16">
         <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight break-words">Professional problem-solver.<br/><span className="text-amber-400">Accidental historian.</span></h2>
         <div className="space-y-8 text-slate-300 leading-relaxed text-lg font-light">

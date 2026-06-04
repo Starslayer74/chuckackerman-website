@@ -54,7 +54,7 @@ export default function Home() {
   };
 
   return (
-    <div className="px-6 max-w-7xl mx-auto space-y-32 mb-32">
+    <div className="px-6 max-w-7xl mx-auto space-y-20 md:space-y-32">
       
       <AnimatedGradient className="pt-12 pb-12 text-center relative rounded-3xl overflow-hidden mt-8 shadow-2xl border border-white/10">
         <div className="relative z-10 flex flex-col items-center px-4 md:px-8">

@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Contact() {
   return (
-    <div className="px-6 py-20 max-w-3xl mx-auto">
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-3xl mx-auto">
       <header className="mb-16 text-center">
         <p className="text-amber-500 font-bold uppercase tracking-widest text-sm mb-4">Get in touch</p>
         <h2 className="text-5xl font-serif font-bold text-white mb-6">Send Chuck a Message</h2>

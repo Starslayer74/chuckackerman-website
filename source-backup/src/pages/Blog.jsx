@@ -32,9 +32,9 @@ export default function Blog() {
   }
 
   return (
-    <div className="px-6 py-20 max-w-4xl mx-auto">
-      <header className="mb-12 border-b border-slate-700 pb-8">
-        <h2 className="text-4xl font-serif font-bold text-white mb-4">The Chuck Stops Here</h2>
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-4xl mx-auto">
+      <header className="mb-12 border-b border-slate-700 pb-8 text-center">
+        <h2 className="text-5xl font-serif font-bold text-white mb-4">The Chuck Stops Here</h2>
       </header>
 
       {loading && <p className="text-amber-400 animate-pulse text-lg">Fetching the latest posts...</p>}

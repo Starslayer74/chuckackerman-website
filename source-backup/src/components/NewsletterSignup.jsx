@@ -37,7 +37,7 @@ export default function NewsletterSignup() {
                   name="EMAIL" 
                   placeholder="yourname@email.com" 
                   required 
-                  className="px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 min-w-[250px]"
+                  className="px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-amber-500 w-full sm:min-w-[250px]"
                 />
                 <button type="submit" className="btn-primary py-3 px-6 whitespace-nowrap">
                   Subscribe

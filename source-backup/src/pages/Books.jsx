@@ -4,8 +4,8 @@ import AnimatedGradient from '../components/AnimatedGradient';
 
 export default function Books() {
   return (
-    <div className="px-6 py-20 max-w-6xl mx-auto">
-      <header className="mb-24 text-center">
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-6xl mx-auto">
+      <header className="mb-12 md:mb-24 text-center">
         <h2 className="text-5xl font-serif font-bold text-white mb-6">Books by Chuck Ackerman</h2>
         <p className="text-slate-400 text-xl font-light">Nonfiction as Chuck Ackerman. Fiction as Lars C. Hallene. Two names, one author, zero regrets.</p>
       </header>

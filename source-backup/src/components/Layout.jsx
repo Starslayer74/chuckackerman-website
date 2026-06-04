@@ -35,7 +35,7 @@ export default function Layout() {
         </main>
 
         {/* Footer */}
-        <AnimatedGradient className="mt-32 border-t border-white/10 bg-slate-950/80 backdrop-blur-xl py-16">
+        <AnimatedGradient className="mt-12 md:mt-32 border-t border-white/10 bg-slate-950/80 backdrop-blur-xl py-16">
           <footer className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-8 text-center relative z-10">
             <Link to="/" className="text-2xl font-serif font-bold text-slate-500 hover:text-white transition-colors">
               Chuck Ackerman

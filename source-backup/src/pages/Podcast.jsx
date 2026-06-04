@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Podcast() {
   return (
-    <div className="px-6 py-20 max-w-5xl mx-auto space-y-16">
+    <div className="px-6 pt-12 pb-4 md:py-20 max-w-5xl mx-auto space-y-16">
       
       <header className="text-center space-y-6">
         <div className="inline-block px-4 py-1 rounded-full bg-red-900/30 border border-red-500/50 mb-4">
@@ -11,7 +11,7 @@ export default function Podcast() {
             NSFW / Explicit Content
           </p>
         </div>
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-4">Art or Fart</h1>
+        <h1 className="text-5xl font-serif font-bold text-white mb-4">Art or Fart</h1>
         <p className="text-xl text-slate-300 max-w-2xl mx-auto font-light leading-relaxed">
           A roundtable movie podcast that occasionally says things we probably shouldn't. Join us as we debate whether cinema's most debated films are high art or just plain garbage.
         </p>
