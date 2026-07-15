@@ -32,33 +32,48 @@ export const books = [
 export const callAuditTiers = [
   {
     name: "Starter Audit",
-    price: "$297",
+    price: "$295",
     description: "Best for smaller teams or a focused snapshot of call quality.",
     features: [
       "Review of 10 recorded calls",
       "Written evaluation report",
       "6-area assessment framework",
       "Specific language recommendations",
-      "Delivered within 5 business days"
+      "Delivered within 5 business days",
+      "+ Summary report"
     ],
     popular: false,
-    link: "/contact?service=starter-audit"
+    link: "http://www.fiverr.com/s/pdDv0rR"
   },
   {
     name: "Full Audit",
-    price: "$497",
+    price: "$395",
     description: "The complete picture. Best for teams of 2+ or businesses with varied call types.",
+    features: [
+      "Review of 15 recorded calls",
+      "Comprehensive written report",
+      "6-area assessment framework",
+      "Specific language recommendations",
+      "Delivered within 7 business days",
+      "+ Summary report"
+    ],
+    popular: true,
+    link: "http://www.fiverr.com/s/pdDv0rR"
+  },
+  {
+    name: "Executive Audit",
+    price: "$495",
+    description: "Deep dive analysis with actionable coaching materials and video feedback.",
     features: [
       "Review of 20 recorded calls",
       "Comprehensive written report",
       "6-area assessment framework",
-      "Specific language recommendations",
-      "30-minute debrief call with owner",
       "Delivered within 7 business days",
-      "+ Add-on: Reply Kit templates +$47"
+      "+ Reply Kit Email Templates PDF",
+      "+ Video debrief"
     ],
-    popular: true,
-    link: "/contact?service=full-audit"
+    popular: false,
+    link: "http://www.fiverr.com/s/pdDv0rR"
   }
 ];
 
