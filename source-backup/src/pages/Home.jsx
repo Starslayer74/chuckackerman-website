@@ -8,6 +8,13 @@ export default function Home() {
   const [latestPost, setLatestPost] = useState(null);
   const [loadingPost, setLoadingPost] = useState(true);
 
+  const latestBooks = [
+    { label: "Fiction", book: books.find(b => b.category === 'fiction') },
+    { label: "Non-Fiction", book: books.find(b => b.category === 'non-fiction') },
+    { label: "AI Parody", book: books.find(b => b.category === 'parody') },
+    { label: "Activity", book: books.find(b => b.category === 'coloring') }
+  ].filter(item => item.book);
+
   useEffect(() => {
     // Typewriter effect
     const el = document.getElementById('hero-typing');
@@ -114,39 +121,27 @@ export default function Home() {
       {/* BOOKS SECTION */}
       <section className="space-y-12">
         <div className="text-center">
-          <h2 className="text-4xl font-serif font-bold text-white">Latest Releases</h2>
+          <p className="text-amber-500 font-bold uppercase tracking-widest text-sm mb-4">Books</p>
+          <h2 className="text-4xl font-serif font-bold text-white">Things Chuck has written recently</h2>
         </div>
         <div className="grid md:grid-cols-2 gap-8">
           
-          <div className="glass-card flex flex-col md:flex-row overflow-hidden group">
-            <div className="w-full md:w-2/5 p-6 flex items-center justify-center bg-black/20 border-b md:border-b-0 md:border-r border-white/5">
-               <img src={books[3].cover} alt={books[3].title} className="w-full max-w-[200px] shadow-2xl rounded-sm transform group-hover:scale-105 transition-transform duration-500" />
-            </div>
-            <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-              <p className="text-amber-400 font-bold uppercase tracking-widest text-xs mb-3">Fiction</p>
-              <h3 className="text-2xl font-serif font-bold text-white mb-2">{books[3].title}</h3>
-              <p className="text-slate-400 mb-4 font-medium text-sm">By {books[3].author}</p>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">{books[3].description}</p>
-              <div className="mt-auto">
-                <a href={books[3].link} target="_blank" rel="noreferrer" className="btn-primary text-sm py-2 px-4">Get the Book</a>
+          {latestBooks.map((item, index) => (
+            <div key={index} className="glass-card flex flex-col md:flex-row overflow-hidden group">
+              <div className="w-full md:w-2/5 p-6 flex items-center justify-center bg-black/20 border-b md:border-b-0 md:border-r border-white/5">
+                 <img src={item.book.cover} alt={item.book.title} className={`w-full max-w-[200px] shadow-2xl rounded-sm transform group-hover:scale-105 transition-transform duration-500 ${item.book.category === 'coloring' ? '' : 'aspect-[2/3] object-contain'}`} />
+              </div>
+              <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                <p className="text-amber-400 font-bold uppercase tracking-widest text-xs mb-3">{item.label}</p>
+                <h3 className="text-2xl font-serif font-bold text-white mb-2">{item.book.title}</h3>
+                <p className="text-slate-400 mb-4 font-medium text-sm">By {item.book.author}</p>
+                <p className="text-slate-300 text-sm leading-relaxed mb-6 flex-grow">{item.book.description}</p>
+                <div className="mt-auto pt-4 border-t border-white/10">
+                  <a href={item.book.link} target="_blank" rel="noreferrer" className="text-amber-400 font-bold hover:text-white transition-colors uppercase tracking-widest text-sm inline-flex items-center gap-2">Get the Book <span className="transform group-hover:translate-x-1 transition-transform">&rarr;</span></a>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="glass-card flex flex-col md:flex-row overflow-hidden group">
-            <div className="w-full md:w-2/5 p-6 flex items-center justify-center bg-black/20 border-b md:border-b-0 md:border-r border-white/5">
-               <img src={books[0].cover} alt={books[0].title} className="w-full max-w-[200px] shadow-2xl rounded-sm transform group-hover:scale-105 transition-transform duration-500" />
-            </div>
-            <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
-              <p className="text-amber-400 font-bold uppercase tracking-widest text-xs mb-3">Non-Fiction</p>
-              <h3 className="text-2xl font-serif font-bold text-white mb-2">{books[0].title}</h3>
-              <p className="text-slate-400 mb-4 font-medium text-sm">By {books[0].author}</p>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">{books[0].description}</p>
-              <div className="mt-auto">
-                <a href={books[0].link} target="_blank" rel="noreferrer" className="btn-primary text-sm py-2 px-4">Get the Book</a>
-              </div>
-            </div>
-          </div>
+          ))}
 
         </div>
         <div className="text-center mt-8">

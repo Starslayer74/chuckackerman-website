@@ -14,10 +14,10 @@ export default function CallAudit() {
       
       <div className="text-center mb-16">
         <h3 className="text-3xl font-serif font-bold text-white">Choose Your Audit</h3>
-        <p className="text-slate-400 mt-4">Both options include a detailed written report. No hidden fees.</p>
+        <p className="text-slate-400 mt-4">All options include a detailed written report. No hidden fees.</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto items-start">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 max-w-7xl mx-auto items-start">
         {callAuditTiers.map((tier, index) => (
           <div key={index} className={`glass-card p-10 flex flex-col ${tier.popular ? 'border-amber-500/50 shadow-amber-900/30 shadow-2xl scale-105 z-10 relative bg-slate-900/80' : 'bg-slate-900/40 mt-4'}`}>
             {tier.popular && (
@@ -39,10 +39,16 @@ export default function CallAudit() {
             </ul>
 
             <div className="mt-auto">
-              <a href={tier.link} className={`w-full ${tier.popular ? 'btn-primary' : 'btn-outline'}`}>Book this Audit</a>
+              <a href={tier.link} target="_blank" rel="noopener noreferrer" className={`w-full ${tier.popular ? 'btn-primary' : 'btn-outline'}`}>Book on Fiverr</a>
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="mt-24 mb-8 max-w-3xl mx-auto text-center border-t border-slate-800/60 pt-10">
+        <p className="text-slate-400 text-sm">
+          <strong>Important Note:</strong> To avoid conflicts of interest, I cannot offer this service to Fleet Management companies at this time.
+        </p>
       </div>
     </div>
   );

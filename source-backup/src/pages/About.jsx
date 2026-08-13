@@ -29,21 +29,21 @@ export default function About() {
           <div className="glass-card p-6 md:p-10 md:ml-12 relative">
             <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-amber-500 border-4 border-slate-900 hidden md:block"></div>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-              <h4 className="text-2xl font-bold text-white">Web Application Support Specialist</h4>
+              <h4 className="text-2xl font-bold text-white">Technical Support Specialist</h4>
               <span className="text-sm font-bold tracking-widest uppercase text-amber-400 bg-amber-400/10 px-4 py-2 rounded-full mt-4 md:mt-0">2019 – Present</span>
             </div>
             <p className="text-sm uppercase tracking-widest text-slate-500 font-bold mb-6">Element Fleet Management &bull; Remote</p>
-            <p className="text-slate-300 text-lg font-light leading-relaxed">Platform troubleshooting, user provisioning, access management, and monthly training webinars for internal teams and enterprise clients via Salesforce, ServiceNow, and Five9.</p>
+            <p className="text-slate-300 text-lg font-light leading-relaxed">Provide front-line technical and account support, managing user provisioning, password administration, and role-based access. Troubleshoot customer-facing mobile apps and deliver monthly training webinars for internal staff and external users.</p>
           </div>
           
           <div className="glass-card p-6 md:p-10 md:ml-12 relative opacity-80 hover:opacity-100 transition-opacity">
             <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-slate-700 border-4 border-slate-900 hidden md:block"></div>
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
-              <h4 className="text-2xl font-bold text-white">Estimates Auditor & Driver Consultant</h4>
+              <h4 className="text-2xl font-bold text-white">Customer Support Consultant</h4>
               <span className="text-sm font-bold tracking-widest uppercase text-slate-400 bg-slate-800 px-4 py-2 rounded-full mt-4 md:mt-0">2004 – 2019</span>
             </div>
             <p className="text-sm uppercase tracking-widest text-slate-500 font-bold mb-6">Element Fleet Management</p>
-            <p className="text-slate-300 text-lg font-light leading-relaxed">Primary customer support contact for corporate clients. Desk audits via Mitchell system. Managed multi-state programs and cross-functional customer care support.</p>
+            <p className="text-slate-300 text-lg font-light leading-relaxed">Served as primary phone support contact, specializing in de-escalating stressful situations and coordinating next steps. Reviewed and audited repair estimates for accuracy and provided cross-functional customer care support.</p>
           </div>
         </div>
       </section>

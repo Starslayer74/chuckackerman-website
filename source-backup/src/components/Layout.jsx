@@ -20,6 +20,7 @@ export default function Layout() {
             <Link to="/about" className={isActive('/about')}>About</Link>
             <Link to="/books" className={isActive('/books')}>Books</Link>
             <Link to="/shop" className={isActive('/shop')}>Shop</Link>
+            <Link to="/software" className={isActive('/software')}>Software</Link>
             <Link to="/audit" className={isActive('/audit')}>Call Audit</Link>
             <Link to="/blog" className={isActive('/blog')}>Blog</Link>
             <Link to="/podcast" className={isActive('/podcast')}>Podcast</Link>

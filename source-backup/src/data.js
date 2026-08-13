@@ -1,64 +1,107 @@
 export const books = [
   {
+    title: "the romancce novel",
+    author: "Pearl Plexity",
+    description: "An AI-generated, human-edited parody that serves as a love letter to and roast of every romance novel ever written.",
+    cover: "/pearl-plexity.png",
+    link: "https://amzn.to/4qyXSjT",
+    category: "parody"
+  },
+  {
+    title: "the book that was poorly written by AI",
+    author: "Chad GPT",
+    description: "What happens when you ask an AI to write a parody book about how bad AI is at writing? It tries to name it Disrupt Your Wordhole.",
+    cover: "/chad-gpt.png",
+    link: "https://amzn.to/4qdXFSX",
+    category: "parody"
+  },
+  {
+    title: "Presidential Gnomes: A Fun American History Coloring Book",
+    author: "Gnomes with Jobs",
+    description: "45 American presidents drawn as adorable gnomes, featuring real historical facts to read and scenes to color.",
+    cover: "/presidential-gnomes.png",
+    link: "https://amzn.to/4fXa2zj",
+    category: "coloring"
+  },
+  {
     title: "Compromised: How America's Computer Superstore Sold Its Soul and Lost Its Way",
     author: "Chuck Ackerman",
     description: "The complete, unauthorized story of the rise and fall of the ultimate computer superstore.",
     cover: "/compromised.jpeg",
-    link: "https://amazon.com"
+    link: "https://amzn.to/4hxzxIE",
+    category: "non-fiction"
   },
   {
     title: "Thirty Days: The Story of NVIDIA's Survival and the AI Revolution",
     author: "Chuck Ackerman",
     description: "How a scrappy graphics company survived near-bankruptcy to build the hardware powering modern artificial intelligence.",
     cover: "/thirty_days.jpeg",
-    link: "https://amazon.com"
+    link: "https://amzn.to/4cipa7W",
+    category: "non-fiction"
   },
   {
     title: "Doorbusters: From Midnight Lines to Digital Carts - The Changing Face of Black Friday",
     author: "Chuck Ackerman",
     description: "A cultural history of retail's most chaotic and controversial holiday, and how it shifted from physical stampedes to online algorithms.",
     cover: "/doorbusters.jpeg",
-    link: "https://amazon.com"
+    link: "https://amzn.to/3S8qd3p",
+    category: "non-fiction"
   },
   {
     title: "Little Red Riding Hood: Off the Grid",
     author: "Lars C. Hallene",
     description: "A reimagined thriller. Little Red Riding Hood is forced to deliver a package across a dangerous, post-collapse landscape.",
     cover: "/little_red_riding_hood.jpeg",
-    link: "https://amazon.com"
+    link: "https://amzn.to/4cio0JC",
+    category: "fiction"
   }
 ];
 
 export const callAuditTiers = [
   {
     name: "Starter Audit",
-    price: "$297",
+    price: "$295",
     description: "Best for smaller teams or a focused snapshot of call quality.",
     features: [
       "Review of 10 recorded calls",
       "Written evaluation report",
       "6-area assessment framework",
       "Specific language recommendations",
-      "Delivered within 5 business days"
+      "Delivered within 5 business days",
+      "+ Summary report"
     ],
     popular: false,
-    link: "/contact?service=starter-audit"
+    link: "http://www.fiverr.com/s/pdDv0rR"
   },
   {
     name: "Full Audit",
-    price: "$497",
+    price: "$395",
     description: "The complete picture. Best for teams of 2+ or businesses with varied call types.",
+    features: [
+      "Review of 15 recorded calls",
+      "Comprehensive written report",
+      "6-area assessment framework",
+      "Specific language recommendations",
+      "Delivered within 7 business days",
+      "+ Summary report"
+    ],
+    popular: true,
+    link: "http://www.fiverr.com/s/pdDv0rR"
+  },
+  {
+    name: "Executive Audit",
+    price: "$495",
+    description: "Deep dive analysis with actionable coaching materials and video feedback.",
     features: [
       "Review of 20 recorded calls",
       "Comprehensive written report",
       "6-area assessment framework",
-      "Specific language recommendations",
-      "30-minute debrief call with owner",
       "Delivered within 7 business days",
-      "+ Add-on: Reply Kit templates +$47"
+      "+ Reply Kit Email Templates PDF",
+      "+ Video debrief"
     ],
-    popular: true,
-    link: "/contact?service=full-audit"
+    popular: false,
+    link: "http://www.fiverr.com/s/pdDv0rR"
   }
 ];
 
