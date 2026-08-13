@@ -8,8 +8,8 @@ export default function Blog() {
 
   useEffect(() => {
     // Fetch full blog posts natively so users never leave the site
-    const feedUrl = encodeURIComponent('https://chuckackerman.blogspot.com/feeds/posts/default?alt=rss');
-    const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=10&_=${Date.now()}`;
+    const feedUrl = encodeURIComponent(`https://chuckackerman.blogspot.com/feeds/posts/default?alt=rss&_t=${Math.random().toString(36).substring(7)}`);
+    const url = `https://api.rss2json.com/v1/api.json?rss_url=${feedUrl}&api_key=gdijogjiorta9rud0xljuzdvxu0xltgyqgzkhwjz&count=10`;
     
     fetch(url)
       .then(r => r.json())
