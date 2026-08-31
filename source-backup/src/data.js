@@ -1,5 +1,13 @@
 export const books = [
   {
+    title: "the murdarr myssterry",
+    author: "Jim Meni",
+    description: "A man is dead. His son is missing. His daughter is lying to a private detective. The third AI-generated parody book comes for hard-boiled detective fiction—complete with rain-soaked offices, femme fatales, trench coats, and whiskey. Yes, the title is misspelled. Twice.",
+    cover: "/the-murdarr-myssterry.png",
+    link: "https://amzn.to/4qJ9654",
+    category: "parody"
+  },
+  {
     title: "the romancce novel",
     author: "Pearl Plexity",
     description: "An AI-generated, human-edited parody that serves as a love letter to and roast of every romance novel ever written.",

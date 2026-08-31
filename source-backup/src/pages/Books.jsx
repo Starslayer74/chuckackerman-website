@@ -12,7 +12,10 @@ export default function Books() {
     <div className="px-6 pt-12 pb-4 md:py-20 max-w-6xl mx-auto">
       <header className="mb-12 md:mb-24 text-center">
         <h2 className="text-5xl font-serif font-bold text-white mb-6">Books by Chuck Ackerman</h2>
-        <p className="text-slate-400 text-xl font-light">Nonfiction as Chuck Ackerman. Fiction as Lars C. Hallene. Two names, one author, zero regrets.</p>
+        <p className="text-slate-400 text-xl font-light mb-4">Nonfiction as Chuck Ackerman. Fiction as Lars C. Hallene. Two names, one author, zero regrets.</p>
+        <p className="text-slate-500 text-xs">
+          <em>Disclosure: As an Amazon Associate, I earn from qualifying purchases when you use the links on this page.</em>
+        </p>
       </header>
 
       <div className="grid md:grid-cols-2 gap-10">

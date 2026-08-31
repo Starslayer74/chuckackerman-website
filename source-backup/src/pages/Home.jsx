@@ -144,8 +144,11 @@ export default function Home() {
           ))}
 
         </div>
-        <div className="text-center mt-8">
+        <div className="text-center mt-8 space-y-4">
           <Link to="/books" className="btn-outline">View All Books</Link>
+          <p className="text-slate-500 text-xs mt-4">
+            <em>Disclosure: As an Amazon Associate, I earn from qualifying purchases when you use the book links on this site.</em>
+          </p>
         </div>
       </section>
 
