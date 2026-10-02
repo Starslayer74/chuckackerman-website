@@ -2,6 +2,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
 
+const calendarItems = [
+  { title: 'American Landmarks 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32651043', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002181404-1f1be8d0-d665-69c6-9a6d-161615cfc23f.jpg' },
+  { title: 'Space History 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32445426', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211325-1f1bea61-b127-647e-934d-7a8196392917.jpg' },
+  { title: 'Aviation 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32436362', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211208-1f1bea5e-d287-6cac-8766-be1f72993485.jpg' },
+  { title: 'Starry Night National Parks 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32432613', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002210921-1f1bea58-9941-65c0-814e-62f364602235.jpg' },
+  { title: 'Presidential Gnomes 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32422294', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211443-1f1bea64-9717-64e6-96cd-ba6ed697eb96.jpg' },
+  { title: 'Presidential Gnomes 2027 Coloring Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32422283', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211601-1f1bea67-7e9b-6cb6-ba14-aab457899eb4.jpg' },
+];
+
 const blueprintItems = [
   {
     title: 'Wedding Planner Digital Download',
@@ -52,6 +61,29 @@ export default function Shop() {
 
   return (
     <div className="px-6 pt-6 pb-4 md:pt-10 md:pb-16 max-w-7xl mx-auto space-y-10 md:space-y-14">
+      <section id="calendars">
+        <header className="mb-8 text-center">
+          <h2 className="text-5xl font-serif font-bold text-white mb-4">2027 Calendars</h2>
+          <p className="text-slate-400 text-lg font-light">2027 wall calendars, from Bad Decisions Designs. Limited time only.</p>
+        </header>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+          {calendarItems.map((item, index) => (
+            <a key={index} href={item.link} target="_blank" rel="noreferrer" className="group block">
+              <div className="overflow-hidden rounded-xl mb-3 w-full aspect-square transform group-hover:scale-105 transition-transform duration-500">
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+              </div>
+              <h3 className="font-bold text-white text-sm group-hover:text-amber-400 transition-colors mb-1">{item.title}</h3>
+              <p className="text-amber-500 font-bold text-sm">{item.price}</p>
+            </a>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <a href="https://calendars.baddecisionsdesigns.com/" target="_blank" rel="noreferrer" className="btn-primary inline-block">
+            Shop All Calendars
+          </a>
+        </div>
+      </section>
+
       <section id="bad-decisions">
         <header className="mb-8 text-center">
           <h2 className="text-5xl font-serif font-bold text-white mb-6">Bad Decisions Designs</h2>
