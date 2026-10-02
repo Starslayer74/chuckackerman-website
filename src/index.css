@@ -2,22 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  body {
-    @apply bg-slate-950 text-slate-200 antialiased selection:bg-amber-500 selection:text-white relative;
-    /* Animated Gradient Mesh Background */
-    background: radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(232, 168, 50, 0.1), transparent 25%),
-                radial-gradient(circle at 50% 80%, rgba(15, 42, 74, 0.5), transparent 40%);
-    background-color: #020617; /* slate-950 */
-    background-attachment: fixed;
-    animation: pulseGlow 15s ease-in-out infinite alternate;
+/* Registered so the browser can smoothly interpolate --angle across the
+   spinBorder keyframes below, instead of snapping between values. */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spinBorder {
+  to {
+    --angle: 360deg;
   }
 }
 
-@keyframes pulseGlow {
+/* Raw keyframes (not routed through Tailwind's theme) so the buttons'
+   animation can never be silently purged again - Tailwind's JIT only
+   emits a theme keyframe when some element actually uses its matching
+   animate-* utility class; this one briefly disappeared entirely when
+   ShineBorder.jsx (the last thing using animate-shine) got deleted. */
+@keyframes shine {
   0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased selection:bg-amber-500 selection:text-white relative;
+  }
 }
 
 @layer components {
@@ -27,30 +40,80 @@
   }
   
   .glass-card:hover {
-    @apply bg-slate-900/60 border-white/20 shadow-amber-900/20 shadow-2xl transform -translate-y-1;
+    @apply bg-slate-900/60 border-white/20 shadow-black/30 shadow-2xl transform -translate-y-1;
   }
 
   /* Premium Buttons */
+  /* Site-wide animated gradient button: sweeps navy -> blue -> a brief amber
+     highlight -> blue -> navy on a loop. Excluded from the Software page,
+     which gets its own dedicated button treatment. */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold rounded-xl shadow-lg shadow-amber-900/50 hover:shadow-amber-900/80 hover:from-amber-400 hover:to-amber-600 transition-all duration-300 transform hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 text-white font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5;
+    background-image: linear-gradient(135deg, #0f1729 0%, #0f1729 35%, #1e3a8a 45%, #f59e0b 50%, #1e3a8a 55%, #0f1729 65%, #0f1729 100%);
+    background-size: 300% 300%;
+    animation: shine 4s infinite linear;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 30px -5px rgba(245, 158, 11, 0.6);
   }
 
+  /* Same filled diagonal sweep as .btn-primary, just mirrored (45deg
+     instead of 135deg) so it visibly sweeps the opposite direction while
+     staying the same kind of animation. */
   .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-amber-500/50 text-amber-400 font-bold rounded-xl hover:bg-amber-500/10 hover:border-amber-400 transition-all duration-300 transform hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center px-8 py-4 text-white font-bold rounded-xl shadow-lg transition-all duration-300 transform hover:-translate-y-0.5;
+    background-image: linear-gradient(45deg, #0f1729 0%, #0f1729 35%, #1e3a8a 45%, #f59e0b 50%, #1e3a8a 55%, #0f1729 65%, #0f1729 100%);
+    background-size: 300% 300%;
+    animation: shine 4s infinite linear;
+  }
+  .btn-outline:hover {
+    box-shadow: 0 0 30px -5px rgba(245, 158, 11, 0.6);
   }
 
-  /* Typography */
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400;
+  /* Static version of the old solid-amber button, kept for the Software
+     page only. */
+  .btn-primary-static {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-black/30 hover:shadow-black/40 hover:from-amber-400 hover:to-amber-500 transition-all duration-300 transform hover:-translate-y-0.5;
   }
-  
-  .text-accent {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-amber-600;
+
+  /* Spinning gradient border for data-entry fields (Contact page inputs/
+     dropdown, newsletter email input). Relies on the wrapped field's own
+     opaque background to cover the interior, showing only the rotating
+     conic-gradient in the border itself. A visible slate ring at rest
+     (not near-black - a dark-navy base blended into the page background
+     and made the border look like it vanished on whichever side wasn't
+     currently under the highlight) with a brighter amber/blue highlight
+     sweeping through it. Brand colors only, no pink/purple. */
+  .field-spin-border {
+    position: relative;
+    border: 2px solid transparent;
+    background-image: conic-gradient(from var(--angle), #334155 0%, #3b82f6 65%, #f59e0b 80%, #3b82f6 90%, #334155 100%);
+    background-clip: border-box;
+    animation: spinBorder 3s linear infinite;
   }
 
   /* Blog Content overrides */
-  .prose img { 
-    @apply block mx-auto shadow-2xl rounded-2xl border border-white/10; 
+  /* Blogger's own content already encodes each image's alignment (float:left inline
+     on its wrapping <a> for left-aligned images, text-align:center on a wrapper div
+     for centered ones) - only style appearance here, don't fight that positioning. */
+  .prose img {
+    @apply max-w-full h-auto shadow-2xl rounded-2xl border border-white/10;
+  }
+  /* Blogger wraps images in <a>; centering needs to target that wrapper since a
+     block img inside an inline anchor doesn't inherit the parent's text-align.
+     Scoped to skip anchors Blogger already floats (float:left inline style),
+     since those carry their own margin (e.g. margin-right:1em) for the text-wrap
+     gap that this rule's !important would otherwise clobber. */
+  .prose a:has(> img):not([style*="float"]) {
+    display: block !important;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .prose::after {
+    content: '';
+    display: table;
+    clear: both;
   }
   .prose {
     @apply text-slate-300 max-w-none;
@@ -58,18 +121,55 @@
   .prose h1, .prose h2, .prose h3, .prose h4 {
     @apply text-white font-serif tracking-tight;
   }
-  .prose a {
+  /* :not(:has(img)) skips the underline styling on Blogger's image-wrapping links */
+  .prose a:not(:has(img)) {
     @apply text-amber-400 no-underline border-b border-amber-500/30 hover:border-amber-400 transition-colors;
   }
   .prose strong {
     @apply text-white font-bold;
   }
-
-  /* ── WEBGL GRADIENT (nav/hero/footer) ── */
-  .ca-gradient-host {
-    position: relative;
-    overflow: hidden;
+  /* Blogger/Google Docs paste-in leaves inline line-height:1.15 on spans/paragraphs; force readable spacing */
+  .prose p, .prose li, .prose span {
+    line-height: 1.6 !important;
   }
-  .ca-gradient-host > * { position: relative; z-index: 1; }
-  .ca-gc { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.82; display: block; }
+
+  /* Blueprint grid background for the Software page: graph-paper style lines
+     over a deep navy base, faded toward the edges via a radial mask so it
+     reads as an accent rather than a hard-edged rectangle. Kept low-opacity
+     since it sits behind paragraph text. */
+  .blueprint-bg {
+    position: relative;
+  }
+  .blueprint-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #16548f;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  /* Site-wide animated content background (21st.dev "Custom gradient", Silk
+     Blend/ios preset): a swaying linear gradient with a grain overlay and a
+     vignette. --angle is updated per frame by SilkBackground.jsx; the rest
+     is static. Sits behind <main> only - nav and footer stay solid. */
+  .silk-bg {
+    --angle: 90deg;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #020617;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E"),
+      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0.424) 100%),
+      linear-gradient(var(--angle), #020617 0%, #0F1729 100%);
+    background-size: 120px 120px, auto, auto;
+    background-blend-mode: overlay, normal, normal;
+  }
+
 }

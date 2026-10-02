@@ -1,49 +1,44 @@
 
 import React from 'react';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function About() {
   return (
     <div className="px-6 pt-12 pb-4 md:py-20 max-w-4xl mx-auto space-y-16 md:space-y-24">
-      <section className="glass-card p-8 md:p-16">
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight break-words">Professional problem-solver.<br/><span className="text-amber-400">Accidental historian.</span></h2>
-        <div className="space-y-8 text-slate-300 leading-relaxed text-lg font-light">
-          <p>I've spent 20+ years in technical support and customer service, helping people navigate complex systems and solving problems for users who are often frustrated before they ever reach out. I genuinely enjoy that challenge. Whether it's troubleshooting platform access, training a new user, or untangling a process that stopped making sense somewhere along the way — that's where I do my best work.</p>
-          <p>My background spans enterprise SaaS platforms, identity and access management, mobile application support, and high-volume customer care environments. I've been fully remote since 2019 and thrive in distributed team settings.</p>
-          <p>On the side, I write books. Nonfiction about the companies and events that shaped how we live, shop, and interact — the kind of stories that get quietly buried when a brand collapses or a trend fades out of the news cycle. Fiction has arrived — under the pen name Lars C. Hallene. Someone has to write it all down.</p>
-          <p>Outside of work and writing, I'm a movie buff with a custom home theater setup and a standing seat on a podcast panel that debates whether certain films qualify as art or something considerably less flattering. I'll leave it at that.</p>
-          <div className="p-6 bg-white/5 border border-white/10 rounded-2xl mt-8">
-            <p className="italic font-medium text-white text-base">The resume says Charles. The rest of the world says Chuck. Both are correct; one is more fun at parties. Either way, 20+ years of experience is in there.</p>
-          </div>
+      <section>
+        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-10 leading-tight break-words">Professional problem-solver.<br/><span className="text-amber-400">Renaissance man. Renaissance results may vary.</span></h2>
+        <div className="space-y-8 text-slate-300 leading-relaxed text-lg font-light max-w-2xl">
+          <p>I've spent 20+ years in technical support and customer service, solving problems for people who are usually already frustrated by the time they call. I like that work. Troubleshooting access, training a new hire, or untangling a process nobody remembers the reason for anymore: that's where I do my best work.</p>
+          <p>I've worked across enterprise SaaS platforms, identity and access management, mobile app support, and high-volume customer care. I've been fully remote since 2019, and I'm good at it.</p>
+          <p>On the side, I write books: nonfiction about companies and events that get forgotten once the news cycle moves on, fiction under the pen name Lars C. Hallene, plus AI-parody novels and a coloring book, because apparently one genre wasn't enough.</p>
+          <p>I also design merch under Bad Decisions and build Android apps under Blueprint Kit, because sitting still was never really an option. As if that wasn't enough, I'm a movie buff with a standing seat on a podcast panel that debates whether certain films qualify as art or something considerably less flattering. I'll leave it at that.</p>
+          <p className="italic font-medium text-white text-base border-l-2 border-amber-500/40 pl-6">The resume says Charles. The rest of the world says Chuck. Both are correct; one is more fun at parties. Either way, 20+ years of experience is in there.</p>
         </div>
       </section>
 
       <section>
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6 gap-6">
+        <ScrollReveal className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6 gap-6">
             <h3 className="text-3xl font-serif font-bold text-white">Resume Highlights</h3>
             <a href="/Chuck_Ackerman_Resume.pdf" target="_blank" rel="noreferrer" className="btn-primary" download="Chuck_Ackerman_Resume.pdf">Download Full Resume (PDF)</a>
-        </div>
+        </ScrollReveal>
         
-        <div className="space-y-8 relative">
-          <div className="absolute left-6 top-6 bottom-6 w-px bg-amber-500/30 hidden md:block"></div>
-          
-          <div className="glass-card p-6 md:p-10 md:ml-12 relative">
-            <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-amber-500 border-4 border-slate-900 hidden md:block"></div>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+        <div className="space-y-10">
+          <div className="pb-10 border-b border-white/5">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-2 gap-2">
               <h4 className="text-2xl font-bold text-white">Technical Support Specialist</h4>
-              <span className="text-sm font-bold tracking-widest uppercase text-amber-400 bg-amber-400/10 px-4 py-2 rounded-full mt-4 md:mt-0">2019 – Present</span>
+              <span className="text-sm font-bold text-amber-400 whitespace-nowrap">2019 – Present</span>
             </div>
-            <p className="text-sm uppercase tracking-widest text-slate-500 font-bold mb-6">Element Fleet Management &bull; Remote</p>
-            <p className="text-slate-300 text-lg font-light leading-relaxed">Provide front-line technical and account support, managing user provisioning, password administration, and role-based access. Troubleshoot customer-facing mobile apps and deliver monthly training webinars for internal staff and external users.</p>
+            <p className="text-sm text-slate-400 font-bold mb-4">Element Fleet Management &bull; Remote</p>
+            <p className="text-slate-300 text-lg font-light leading-relaxed max-w-2xl">Handle high-volume inbound support calls through a multi-line call system, manage account provisioning and access permissions, and conduct quality assurance reviews for a four-person team. Deliver monthly training webinars and support the company's mobile app for Android and iOS.</p>
           </div>
-          
-          <div className="glass-card p-6 md:p-10 md:ml-12 relative opacity-80 hover:opacity-100 transition-opacity">
-            <div className="absolute -left-[3.25rem] top-12 w-6 h-6 rounded-full bg-slate-700 border-4 border-slate-900 hidden md:block"></div>
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
+
+          <div>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-2 gap-2">
               <h4 className="text-2xl font-bold text-white">Customer Support Consultant</h4>
-              <span className="text-sm font-bold tracking-widest uppercase text-slate-400 bg-slate-800 px-4 py-2 rounded-full mt-4 md:mt-0">2004 – 2019</span>
+              <span className="text-sm font-bold text-slate-400 whitespace-nowrap">2004 – 2019</span>
             </div>
-            <p className="text-sm uppercase tracking-widest text-slate-500 font-bold mb-6">Element Fleet Management</p>
-            <p className="text-slate-300 text-lg font-light leading-relaxed">Served as primary phone support contact, specializing in de-escalating stressful situations and coordinating next steps. Reviewed and audited repair estimates for accuracy and provided cross-functional customer care support.</p>
+            <p className="text-sm text-slate-400 font-bold mb-4">Element Fleet Management</p>
+            <p className="text-slate-300 text-lg font-light leading-relaxed max-w-2xl">Served as primary phone support for customers dealing with accidents, roadside incidents, and vehicle repairs, auditing repair estimates and claims documentation for accuracy. Also helped shape the design of the company's original BlackBerry mobile app.</p>
           </div>
         </div>
       </section>
