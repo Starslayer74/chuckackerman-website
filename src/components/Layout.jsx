@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import AnimatedGradient from './AnimatedGradient';
 import SilkBackground from './SilkBackground';
@@ -33,6 +33,18 @@ export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const zenLink = useMemo(() => momentsOfZen[Math.floor(Math.random() * momentsOfZen.length)], [location.pathname]);
   const isActive = (path) => location.pathname === path ? 'text-amber-400 font-bold' : 'text-slate-400 hover:text-white transition-colors';
+
+  useEffect(() => {
+    function handlePointerMove(e) {
+      const btn = e.target.closest('.btn-primary, .btn-outline');
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      btn.style.setProperty('--x', `${e.clientX - rect.left}px`);
+      btn.style.setProperty('--y', `${e.clientY - rect.top}px`);
+    }
+    document.addEventListener('pointermove', handlePointerMove);
+    return () => document.removeEventListener('pointermove', handlePointerMove);
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col font-sans relative z-10">
