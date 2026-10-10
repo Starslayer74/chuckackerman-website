@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
 
 const calendarItems = [
+  { title: 'Chicago 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32925422', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261010000827-1f1c43eb-7f0a-6a7a-8016-9a8d56917e06.jpg' },
+  { title: 'Washington DC 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32922350', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009225717-1f1c434c-65a3-6da6-a9af-1e0a8fa501e3.jpg' },
+  { title: 'Gnomes with Jobs 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32914307', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009181524-1f1c40d6-5dc2-61be-8fa1-c263040d1b4f.jpg' },
+  { title: 'Gnomes with Jobs 2027 Coloring Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32914247', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009181528-1f1c40d6-85e0-61d2-a3df-7e631684fdb9.jpg' },
   { title: 'Zodiac 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32669214', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261003123319-1f1bf269-d9d6-64aa-a5df-3abac7c76916.jpg' },
   { title: 'New York City 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32669213', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261003034822-1f1bedd4-7eed-6c08-b644-ba62273ea841.jpg' },
   { title: 'Wonders of the World 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32660958', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002232256-1f1beb83-336e-6546-a4c2-da3d7a714b18.jpg' },
