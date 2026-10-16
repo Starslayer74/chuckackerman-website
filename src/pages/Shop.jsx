@@ -3,6 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import ScrollReveal from '../components/ScrollReveal';
 
 const calendarItems = [
+  { title: 'Boston 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33159317', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015232050-1f1c8ef0-f6c1-61b8-bd5e-267f034efd08.jpg' },
+  { title: 'London 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33158436', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015225227-1f1c8eb1-836d-670a-94a0-cae666818bbc.jpg' },
+  { title: 'Italy 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33157122', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015221644-1f1c8e61-ae45-655e-8552-ee10d58fdc61.jpg' },
+  { title: 'Baltimore 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33154522', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015205515-1f1c8dab-90c6-6a34-afd6-729ae021555a.jpg' },
+  { title: 'Philadelphia 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33150720', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015191613-1f1c8cce-3090-6468-ab68-eaa67ac52374.jpg' },
+  { title: 'Los Angeles 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33146295', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015181249-1f1c8c40-78b6-6ffa-9998-da787b3732f3.jpg' },
   { title: 'Chicago 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32925422', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261010000827-1f1c43eb-7f0a-6a7a-8016-9a8d56917e06.jpg' },
   { title: 'Washington DC 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32922350', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009225717-1f1c434c-65a3-6da6-a9af-1e0a8fa501e3.jpg' },
   { title: 'Gnomes with Jobs 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32914307', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009181524-1f1c40d6-5dc2-61be-8fa1-c263040d1b4f.jpg' },
