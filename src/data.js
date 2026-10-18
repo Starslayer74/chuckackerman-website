@@ -32,6 +32,38 @@ export const books = [
     category: "coloring"
   },
   {
+    title: "Gnomes with Jobs Coloring Book",
+    author: "Gnomes with Jobs",
+    description: "74 original illustrations of chubby, bearded gnomes working every job imaginable, from bakers and firefighters to astronauts and tattoo artists. Bold, clean lines, single-sided pages so markers won't bleed through, and a name printed under every gnome.",
+    cover: "/gnomes-with-jobs-coloring-book.png",
+    link: "https://amzn.to/4zwWvFw",
+    category: "coloring"
+  },
+  {
+    title: "80s & 90s Pop Culture Puzzle Book",
+    author: "Max Little",
+    description: "100 retro variety puzzles rotating through word searches, crosswords, word scrambles, and quote decoders, covering movies, synthpop, grunge, arcade hits, and Saturday morning cartoons. A 'Did You Know?' trivia fact runs under every puzzle, with full answer keys in the back.",
+    cover: "/80s-90s-pop-culture-puzzle-book.png",
+    link: "https://amzn.to/4zK4GhX",
+    category: "coloring"
+  },
+  {
+    title: "Cozy Autumn Puzzle Book",
+    author: "Max Little",
+    description: "100 autumn-themed variety puzzles for afternoons by the fire: word searches, crosswords, word scrambles, and quote decoders covering apple orchards, cider mills, fall foliage, and pumpkin harvests. Trivia footers and full answer keys included.",
+    cover: "/cozy-autumn-puzzle-book.png",
+    link: "https://amzn.to/4zEgmT9",
+    category: "coloring"
+  },
+  {
+    title: "Relaxing Puzzles for Seniors",
+    author: "Max Little",
+    description: "100 easy-to-read classic variety puzzles in a portable 6\" x 9\" format: word searches, crosswords, word scrambles, and uplifting quote decoders in clear, bold print with high-contrast grids. A trivia fact runs under every page, with complete answer keys in the back.",
+    cover: "/relaxing-puzzles-for-seniors.png",
+    link: "https://amzn.to/4BaynKo",
+    category: "coloring"
+  },
+  {
     title: "Compromised: How America's Computer Superstore Sold Its Soul and Lost Its Way",
     author: "Chuck Ackerman",
     description: "Before the Genius Bar, there was the Red Shirt Army. The unauthorized story of how America's computer superstore rose, ruled the '90s, and imploded.",
