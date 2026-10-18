@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { books } from '../data';
 import ScrollReveal from '../components/ScrollReveal';
 
-function BookCard({ book, square }) {
+function BookCard({ book, onEnlarge }) {
   return (
     <div className="h-full flex items-start gap-6 group pb-6 border-b border-white/5">
-      <img src={book.cover} alt={book.title} className={`w-1/3 max-w-[140px] shadow-xl shadow-black/50 rounded-sm transform group-hover:-translate-y-1 transition-transform duration-300 object-contain flex-shrink-0 ${square ? 'aspect-square' : 'aspect-[2/3]'}`} />
+      <img
+        src={book.cover}
+        alt={book.title}
+        onClick={() => onEnlarge(book)}
+        className="w-1/3 max-w-[140px] h-auto shadow-xl shadow-black/50 rounded-sm transform group-hover:-translate-y-1 transition-transform duration-300 flex-shrink-0 cursor-zoom-in"
+      />
       <div className="flex flex-col flex-grow h-full">
         <h4 className="font-bold text-white text-xl mb-1">{book.title}</h4>
         <p className="text-slate-400 text-sm mb-4">By {book.author}</p>
@@ -19,6 +25,7 @@ function BookCard({ book, square }) {
 }
 
 export default function Books() {
+  const [enlarged, setEnlarged] = useState(null);
   const fictionBooks = books.filter(b => b.category === 'fiction');
   const parodyBooks = books.filter(b => b.category === 'parody');
   const nonFictionBooks = books.filter(b => b.category === 'non-fiction');
@@ -43,7 +50,7 @@ export default function Books() {
               <ScrollReveal><h3 className="text-3xl font-serif font-bold text-white border-b border-white/10 pb-4">Non-Fiction Books</h3></ScrollReveal>
             </div>
             {nonFictionBooks.map((book, index) => (
-              <BookCard key={index} book={book} />
+              <BookCard key={index} book={book} onEnlarge={setEnlarged} />
             ))}
           </>
         )}
@@ -55,7 +62,7 @@ export default function Books() {
               <ScrollReveal><h3 className="text-3xl font-serif font-bold text-white border-b border-white/10 pb-4">Fiction</h3></ScrollReveal>
             </div>
             {fictionBooks.map((book, index) => (
-              <BookCard key={index} book={book} />
+              <BookCard key={index} book={book} onEnlarge={setEnlarged} />
             ))}
           </>
         )}
@@ -67,7 +74,7 @@ export default function Books() {
               <ScrollReveal><h3 className="text-3xl font-serif font-bold text-white border-b border-white/10 pb-4">AI Parody Projects</h3></ScrollReveal>
             </div>
             {parodyBooks.map((book, index) => (
-              <BookCard key={index} book={book} />
+              <BookCard key={index} book={book} onEnlarge={setEnlarged} />
             ))}
           </>
         )}
@@ -79,12 +86,29 @@ export default function Books() {
               <ScrollReveal><h3 className="text-3xl font-serif font-bold text-white border-b border-white/10 pb-4">Activity Books</h3></ScrollReveal>
             </div>
             {coloringBooks.map((book, index) => (
-              <BookCard key={index} book={book} square />
+              <BookCard key={index} book={book} onEnlarge={setEnlarged} />
             ))}
           </>
         )}
 
       </div>
+
+      {enlarged && createPortal(
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-6 cursor-zoom-out"
+          onClick={() => setEnlarged(null)}
+        >
+          <div className="w-[90vw] h-[90vh] flex items-center justify-center" onClick={e => e.stopPropagation()}>
+            <img
+              src={enlarged.cover}
+              alt={enlarged.title}
+              onClick={() => setEnlarged(null)}
+              className="max-w-full max-h-full object-contain rounded-sm shadow-2xl shadow-black/60 cursor-zoom-out"
+            />
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
