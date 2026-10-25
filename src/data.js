@@ -24,19 +24,19 @@ export const books = [
     category: "parody"
   },
   {
-    title: "Presidential Gnomes: A Fun American History Coloring Book",
-    author: "Gnomes with Jobs",
-    description: "45 American presidents, drawn as gnomes, each paired with a real historical fact. Color one side, read the other.",
-    cover: "/presidential-gnomes.png",
-    link: "https://amzn.to/4fXa2zj",
-    category: "coloring"
-  },
-  {
     title: "Gnomes with Jobs Coloring Book",
     author: "Gnomes with Jobs",
     description: "74 original illustrations of chubby, bearded gnomes working every job imaginable, from bakers and firefighters to astronauts and tattoo artists. Bold, clean lines, single-sided pages so markers won't bleed through, and a name printed under every gnome.",
     cover: "/gnomes-with-jobs-coloring-book.png",
     link: "https://amzn.to/4zwWvFw",
+    category: "coloring"
+  },
+  {
+    title: "Presidential Gnomes: A Fun American History Coloring Book",
+    author: "Gnomes with Jobs",
+    description: "45 American presidents, drawn as gnomes, each paired with a real historical fact. Color one side, read the other.",
+    cover: "/presidential-gnomes.png",
+    link: "https://amzn.to/4fXa2zj",
     category: "coloring"
   },
   {
@@ -61,6 +61,22 @@ export const books = [
     description: "100 easy-to-read classic variety puzzles in a portable 6\" x 9\" format: word searches, crosswords, word scrambles, and uplifting quote decoders in clear, bold print with high-contrast grids. A trivia fact runs under every page, with complete answer keys in the back.",
     cover: "/relaxing-puzzles-for-seniors.png",
     link: "https://amzn.to/4BaynKo",
+    category: "coloring"
+  },
+  {
+    title: "Cozy Winter Puzzle Book",
+    author: "Max Little",
+    description: "100 winter-themed variety puzzles for fireside evenings and snow days: word searches, crosswords, word scrambles, and quote decoders covering snowy cabins, winter wildlife, and comfort baking. Trivia footers and full answer keys included.",
+    cover: "/cozy-winter-puzzle-book.png",
+    link: "https://link.amazon/B02rJsZGX",
+    category: "coloring"
+  },
+  {
+    title: "Cozy Christmas Puzzle Book",
+    author: "Max Little",
+    description: "100 Christmas variety puzzles for hearthside evenings: word searches, crosswords, word scrambles, and quote decoders covering gingerbread baking, Victorian carols, and vintage toys. Trivia footers and full answer keys included.",
+    cover: "/cozy-christmas-puzzle-book.png",
+    link: "https://link.amazon/B02LGOqon",
     category: "coloring"
   },
   {
