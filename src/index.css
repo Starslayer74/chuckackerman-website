@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Registered so the browser can smoothly interpolate --angle for the
+   silk background's gradient animation, instead of snapping between
+   values. */
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased selection:bg-amber-500 selection:text-white relative;
+  }
+}
+
+@layer components {
+  /* Premium Glassmorphism Card */
+  .glass-card {
+    @apply bg-slate-900/40 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply bg-slate-900/60 border-white/20 shadow-black/30 shadow-2xl transform -translate-y-1;
+  }
+
+  /* Premium Buttons */
+  /* Clear-glass buttons: frosted face, gold text, cursor-tracked blue inner
+     light. --x/--y are updated on pointermove by Layout.jsx so the glow
+     follows the cursor; they default to center so the button still looks
+     right with no JS (keyboard focus, touch). Excluded from the Software
+     page, which gets its own dedicated button treatment. */
+  .btn-primary,
+  .btn-outline {
+    --x: 50%;
+    --y: 50%;
+    @apply inline-flex items-center justify-center px-8 py-4 font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5;
+    position: relative;
+    overflow: hidden;
+    color: #fcd34d;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background-color: rgba(255, 255, 255, 0.04);
+    background-image:
+      radial-gradient(220px 220px at var(--x) var(--y), rgba(59, 130, 246, 0.55), rgba(59, 130, 246, 0.18) 40%, rgba(59, 130, 246, 0) 70%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02));
+    background-blend-mode: screen, normal;
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+  .btn-primary:hover,
+  .btn-outline:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 30px -5px rgba(59, 130, 246, 0.45), 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Static version of the old solid-amber button, kept for the Software
+     page only. */
+  .btn-primary-static {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-bold rounded-xl shadow-lg shadow-black/30 hover:shadow-black/40 hover:from-amber-400 hover:to-amber-500 transition-all duration-300 transform hover:-translate-y-0.5;
+  }
+
+  /* Static border for data-entry fields (Contact page inputs/dropdown,
+     newsletter email input). Was an animated spinning gradient border;
+     Chuck asked for it removed in favor of a plain static border. */
+  .field-spin-border {
+    border: 1px solid rgba(148, 163, 184, 0.25);
+  }
+
+  /* Blog Content overrides */
+  /* Blogger's own content already encodes each image's alignment (float:left inline
+     on its wrapping <a> for left-aligned images, text-align:center on a wrapper div
+     for centered ones) - only style appearance here, don't fight that positioning. */
+  .prose img {
+    @apply max-w-full h-auto shadow-2xl rounded-2xl border border-white/10;
+  }
+  /* Blogger wraps images in <a>; centering needs to target that wrapper since a
+     block img inside an inline anchor doesn't inherit the parent's text-align.
+     Scoped to skip anchors Blogger already floats (float:left inline style),
+     since those carry their own margin (e.g. margin-right:1em) for the text-wrap
+     gap that this rule's !important would otherwise clobber. */
+  .prose a:has(> img):not([style*="float"]) {
+    display: block !important;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .prose::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+  .prose {
+    @apply text-slate-300 max-w-none;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-white font-serif tracking-tight;
+  }
+  /* :not(:has(img)) skips the underline styling on Blogger's image-wrapping links */
+  .prose a:not(:has(img)) {
+    @apply text-amber-400 no-underline border-b border-amber-500/30 hover:border-amber-400 transition-colors;
+  }
+  .prose strong {
+    @apply text-white font-bold;
+  }
+  /* Blogger/Google Docs paste-in leaves inline line-height:1.15 on spans/paragraphs; force readable spacing */
+  .prose p, .prose li, .prose span {
+    line-height: 1.6 !important;
+  }
+
+  /* Blueprint grid background for the Software page: graph-paper style lines
+     over a deep navy base, faded toward the edges via a radial mask so it
+     reads as an accent rather than a hard-edged rectangle. Kept low-opacity
+     since it sits behind paragraph text. */
+  .blueprint-bg {
+    position: relative;
+  }
+  .blueprint-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #16548f;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 40%, transparent 100%);
+  }
+
+  /* Site-wide animated content background (21st.dev "Custom gradient", Silk
+     Blend/ios preset): a swaying linear gradient with a grain overlay and a
+     vignette. --angle is updated per frame by SilkBackground.jsx; the rest
+     is static. Sits behind <main> only - nav and footer stay solid. */
+  .silk-bg {
+    --angle: 90deg;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #020617;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/%3E%3C/svg%3E"),
+      radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 52%, rgba(0, 0, 0, 0.424) 100%),
+      linear-gradient(var(--angle), #020617 0%, #0F1729 100%);
+    background-size: 120px 120px, auto, auto;
+    background-blend-mode: overlay, normal, normal;
+  }
+
+}
