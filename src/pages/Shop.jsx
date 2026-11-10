@@ -1,0 +1,161 @@
+
+import React, { useEffect, useRef, useState } from 'react';
+import ScrollReveal from '../components/ScrollReveal';
+
+const calendarItems = [
+  { title: 'Boston 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33159317', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015232050-1f1c8ef0-f6c1-61b8-bd5e-267f034efd08.jpg' },
+  { title: 'London 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33158436', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015225227-1f1c8eb1-836d-670a-94a0-cae666818bbc.jpg' },
+  { title: 'Italy 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33157122', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015221644-1f1c8e61-ae45-655e-8552-ee10d58fdc61.jpg' },
+  { title: 'Baltimore 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33154522', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015205515-1f1c8dab-90c6-6a34-afd6-729ae021555a.jpg' },
+  { title: 'Philadelphia 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33150720', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015191613-1f1c8cce-3090-6468-ab68-eaa67ac52374.jpg' },
+  { title: 'Los Angeles 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/33146295', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261015181249-1f1c8c40-78b6-6ffa-9998-da787b3732f3.jpg' },
+  { title: 'Chicago 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32925422', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261010000827-1f1c43eb-7f0a-6a7a-8016-9a8d56917e06.jpg' },
+  { title: 'Washington DC 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32922350', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009225717-1f1c434c-65a3-6da6-a9af-1e0a8fa501e3.jpg' },
+  { title: 'Gnomes with Jobs 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32914307', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009181524-1f1c40d6-5dc2-61be-8fa1-c263040d1b4f.jpg' },
+  { title: 'Gnomes with Jobs 2027 Coloring Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32914247', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261009181528-1f1c40d6-85e0-61d2-a3df-7e631684fdb9.jpg' },
+  { title: 'Zodiac 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32669214', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261003123319-1f1bf269-d9d6-64aa-a5df-3abac7c76916.jpg' },
+  { title: 'New York City 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32669213', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261003034822-1f1bedd4-7eed-6c08-b644-ba62273ea841.jpg' },
+  { title: 'Wonders of the World 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32660958', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002232256-1f1beb83-336e-6546-a4c2-da3d7a714b18.jpg' },
+  { title: 'American Landmarks 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32651043', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002181406-1f1be8d0-e7f3-692c-9b6d-7ea9ff22acec.jpg' },
+  { title: 'Space History 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32445426', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211325-1f1bea61-b13d-6760-8c5e-8a7660d3ec54.jpg' },
+  { title: 'Aviation 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32436362', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211208-1f1bea5e-d4d3-6dc6-ae13-22b03777bf33.jpg' },
+  { title: 'Starry Night National Parks 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32432613', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002210921-1f1bea58-9fab-60d2-acf0-b66d70e43002.jpg' },
+  { title: 'Presidential Gnomes 2027 Wall Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32422294', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211443-1f1bea64-9a13-68f2-ac98-922dc2c84edb.jpg' },
+  { title: 'Presidential Gnomes 2027 Coloring Calendar', price: '$22.99', link: 'https://calendars.baddecisionsdesigns.com/product/32422283', image: 'https://d123s6f1z9g2wk.cloudfront.net/files/2026/10/20261002211601-1f1bea67-8048-67bc-b137-0eec7b23f179.jpg' },
+];
+
+const blueprintItems = [
+  {
+    title: 'Wedding Planner Digital Download',
+    price: '$7.00',
+    link: 'https://www.etsy.com/listing/4505962389/wedding-planner-digital-download-budget',
+    image: 'https://i.etsystatic.com/42595275/r/il/544843/8074352755/il_1080xN.8074352755_h2ww.jpg'
+  },
+  {
+    title: 'Personalized Wedding Thank You Cards',
+    price: '$49.55+',
+    link: 'https://www.etsy.com/listing/4505119897/personalized-wedding-thank-you-cards',
+    image: 'https://i.etsystatic.com/42595275/r/il/41fdf1/8067527397/il_1080xN.8067527397_fmlk.jpg'
+  },
+  {
+    title: 'Personalized Wedding Invitation Cards',
+    price: '$49.55+',
+    link: 'https://www.etsy.com/listing/4505062613/personalized-wedding-invitation-cards',
+    image: 'https://i.etsystatic.com/42595275/r/il/831a00/8020772864/il_1080xN.8020772864_3zaf.jpg'
+  },
+  {
+    title: 'Customer Service Email Templates',
+    price: '$17.00',
+    link: 'https://www.etsy.com/listing/4497924185/customer-service-email-templates-for',
+    image: 'https://i.etsystatic.com/42595275/r/il/6fd54a/8021476411/il_1080xN.8021476411_ocx4.jpg'
+  }
+];
+
+export default function Shop() {
+  const scrollerRef = useRef(null);
+  const [canScroll, setCanScroll] = useState(false);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const check = () => setCanScroll(el.scrollWidth > el.clientWidth + 1);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const scrollByCard = (direction) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector('a');
+    const amount = card ? card.getBoundingClientRect().width + 32 : 300;
+    el.scrollBy({ left: direction * amount, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="px-6 pt-6 pb-4 md:pt-10 md:pb-16 max-w-7xl mx-auto space-y-10 md:space-y-14">
+      <section id="calendars">
+        <header className="mb-8 text-center">
+          <h2 className="text-5xl font-serif font-bold text-white mb-4">2027 Calendars</h2>
+          <p className="text-slate-400 text-lg font-light">2027 wall calendars, from Bad Decisions Designs. Limited time only.</p>
+        </header>
+        <div className="flex flex-wrap justify-center gap-6">
+          {calendarItems.map((item, index) => (
+            <a key={index} href={item.link} target="_blank" rel="noreferrer" className="group block w-[calc(50%-12px)] sm:w-[calc(33.333%-16px)] md:w-[calc(16.666%-20px)]">
+              <div className="overflow-hidden rounded-xl mb-3 w-full aspect-square transform group-hover:scale-105 transition-transform duration-500">
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+              </div>
+              <h3 className="font-bold text-white text-sm group-hover:text-amber-400 transition-colors mb-1">{item.title}</h3>
+              <p className="text-amber-500 font-bold text-sm">{item.price}</p>
+            </a>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <a href="https://calendars.baddecisionsdesigns.com/" target="_blank" rel="noreferrer" className="btn-primary inline-block">
+            Shop All Calendars
+          </a>
+        </div>
+      </section>
+
+      <section id="bad-decisions">
+        <header className="mb-8 text-center">
+          <h2 className="text-5xl font-serif font-bold text-white mb-6">Bad Decisions Designs</h2>
+          <p className="text-slate-400 text-xl font-light">Viral t-shirts, apparel & accessories</p>
+        </header>
+        <div className="rounded-2xl overflow-hidden relative">
+          <iframe src="https://bad-decisions.dashery.com/embed/v1/carousel?wmode=transparent" width="100%" height="400px" style={{border:'none', display:'block'}} title="Bad Decisions Carousel"></iframe>
+        </div>
+      </section>
+
+      <section id="blueprint-kit">
+        <header className="mb-8 text-center">
+          <ScrollReveal>
+            <h2 className="text-5xl font-serif font-bold text-white mb-4">Blueprint Kit</h2>
+            <p className="text-slate-400 text-lg font-light">Digital Blueprints for your life. Available on Etsy.</p>
+          </ScrollReveal>
+        </header>
+        <div className="relative">
+          {canScroll && (
+            <>
+              <button
+                type="button"
+                onClick={() => scrollByCard(-1)}
+                aria-label="Scroll left"
+                className="hidden md:flex absolute -left-5 top-[35%] -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white items-center justify-center shadow-lg hover:bg-slate-100 transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard(1)}
+                aria-label="Scroll right"
+                className="hidden md:flex absolute -right-5 top-[35%] -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white items-center justify-center shadow-lg hover:bg-slate-100 transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f172a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </>
+          )}
+
+          <div ref={scrollerRef} className={`flex gap-8 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${canScroll ? 'justify-start' : 'justify-center'}`}>
+            {blueprintItems.map((item, index) => (
+              <a key={index} href={item.link} target="_blank" rel="noreferrer" className="group block flex-shrink-0 w-[45%] sm:w-[30%] md:w-[22%] snap-start">
+                <div className="overflow-hidden rounded-xl mb-4 w-full aspect-square transform group-hover:scale-105 transition-transform duration-500">
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="font-bold text-white text-base group-hover:text-amber-400 transition-colors mb-1">{item.title}</h3>
+                <p className="text-amber-500 font-bold text-sm">{item.price}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 text-center">
+          <a href="https://blueprintkit.etsy.com" target="_blank" rel="noreferrer" className="text-white font-bold hover:text-slate-200 transition-colors underline underline-offset-4 text-2xl tracking-wide" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            Shop All Blueprints
+          </a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
